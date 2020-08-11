@@ -1,0 +1,196 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:startogodomiciliario/view/olvidasteContrasena.dart';
+import 'package:startogodomiciliario/view/registrarme.dart';
+
+import '../main.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  //declaramos de tipo booleano si esta cargando
+  bool _isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
+        .copyWith(statusBarColor: Colors.transparent));
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.white, Colors.green[900]],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
+        ),
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : ListView(
+                children: <Widget>[
+                  _imagenLogin(),
+                  textSection(),
+                  buttonSection(),
+                ],
+              ),
+      ),
+    );
+  }
+
+//declaramos una funcion segnIn que es la que se va a conectar con nuestra api de laravel
+  signIn(String email, pass) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    //nos devuelven los datos en un mapa lo que es  el email y la contraseña
+    Map data = {'email': email, 'password': pass};
+    var jsonResponse = null;
+
+    var response =
+        await http.post("https://startogoweb.com/api/login", body: data);
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+        sharedPreferences.setString("token", jsonResponse['token']);
+        sharedPreferences.setString(
+            "idUsuarioLogueado", jsonResponse['idUsuarioLogueado']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => MainPage()),
+            (Route<dynamic> route) => false);
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      print(response.body);
+    }
+  }
+
+  Container buttonSection() {
+    return Container(
+      alignment: Alignment.topCenter,
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.symmetric(horizontal: 60.0),
+      margin: EdgeInsets.only(top: 15.0),
+      child: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed:
+                emailController.text == "" || passwordController.text == ""
+                    ? null
+                    : () {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        signIn(emailController.text, passwordController.text);
+                      },
+            elevation: 6.0,
+            color: Colors.red,
+            child: Text("Ingresar",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
+          ),
+          Padding(
+            padding: new EdgeInsets.only(top: 5.0),
+          ),
+          Container(
+            width: double.infinity,
+            alignment: Alignment.topCenter,
+            child: CupertinoButton(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Text(
+                "Registrarme",
+                style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'sans'),
+              ),
+              onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
+                //LLAMO A LA CLASE LISTAR PRODUCTO
+                builder: (BuildContext context) => RegistrarDomiciliario(),
+              )),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            alignment: Alignment.topCenter,
+            child: CupertinoButton(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              child: Text(
+                "Olvide mi contraseña",
+                style: TextStyle(
+                    fontSize: 13.0, color: Colors.white, fontFamily: 'sans'),
+              ),
+              onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
+                //LLAMO A LA CLASE LISTAR PRODUCTO
+                builder: (BuildContext context) => OlvidarContrasena(),
+              )),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  Container textSection() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            controller: emailController,
+            cursorColor: Colors.white,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                hintText: 'Correo',
+                labelText: 'Correo',
+                suffixIcon: Icon(Icons.alternate_email),
+                icon: Icon(Icons.email)),
+          ),
+          SizedBox(height: 30.0),
+          TextFormField(
+            controller: passwordController,
+            cursorColor: Colors.white,
+            //para que la contraseña se oculte mientra este escribiendo
+            obscureText: true,
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                hintText: 'Contraseña',
+                labelText: 'Contraseña',
+                suffixIcon: Icon(Icons.lock_open),
+                icon: Icon(Icons.lock)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagenLogin() {
+    return Image(
+      image: AssetImage('assets/apk1.png'),
+      height: 300.0,
+    );
+  }
+}
