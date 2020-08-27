@@ -4,7 +4,6 @@ import 'package:startogodomiciliario/view/login.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/view/mapainicio.dart';
-
 import 'package:startogodomiciliario/view/menuLateral/menuprincial.dart';
 
 void main() async {

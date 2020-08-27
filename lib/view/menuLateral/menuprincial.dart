@@ -20,7 +20,7 @@ class MenuPrincipal extends StatelessWidget {
         children: <Widget>[
           _imagenm(),
           Center(
-            child: Text('Domiciliario',
+            child: Text(prefs.nombreUsuario,
                 style: TextStyle(
                     fontSize: 25.0,
                     color: Colors.black,

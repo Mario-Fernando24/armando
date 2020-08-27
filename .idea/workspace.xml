@@ -1,36 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="ChangeListManager">
+    <list default="true" id="4d0f9b3b-3157-4e0e-a200-2c1defaee8a1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/.filecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/_composite.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_bundle_release_android-arm.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_bundle_release_android-arm64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_bundle_release_android-x64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_release_android-arm.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_release_android-arm64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/android_aot_release_android-x64.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/aot_android_asset_bundle.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/app.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/arm64-v8a/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/armeabi-v7a/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/flutter_assets.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/kernel_snapshot.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/kernel_snapshot.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/ace2f4b5993f2e50fe341fb91828bc81/x86_64/app.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/.filecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/app.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/debug_android_application.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/flutter_assets.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/kernel_snapshot.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/b0a400fcc95409c4ca63e236ef33deef/kernel_snapshot.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/d272677137333a2cdb7814b2fd809a9e/.filecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/d272677137333a2cdb7814b2fd809a9e/.filecache 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/d272677137333a2cdb7814b2fd809a9e/app 2.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/d272677137333a2cdb7814b2fd809a9e/app.dill" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gitignore 2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/kotlin/com/example/startogodomiciliario/MainActivity 2.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle 2.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local 2.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/startogodomiciliario_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/startogodomiciliario_android.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/preferencias.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/preferencias.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/DomiciliosEntregado.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/DomiciliosEntregado.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/mapainicio.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/mapainicio.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/olvidasteContrasena.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/olvidasteContrasena.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/perfil.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/perfil.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/view/screens/onboarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/view/screens/onboarding_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_test 2.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ToolWindowManager">
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-    </layout>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <option name="show-excluded-files" value="false" />
-      </pane>
-    </panes>
+  <component name="ProjectId" id="1ggvAOBbx2NKKWbVgD9VD1AHRYv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d0f9b3b-3157-4e0e-a200-2c1defaee8a1" name="Default Changelist" comment="" />
+      <created>1598548905660</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598548905660</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="269" y="150" key="SettingsEditor" timestamp="1598549317520">
+      <screen x="0" y="23" width="1920" height="977" />
+    </state>
+    <state x="269" y="150" key="SettingsEditor/0.23.1920.977@0.23.1920.977" timestamp="1598549317520" />
+    <state x="168" y="123" width="1200" height="777" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1598549738293">
+      <screen x="0" y="23" width="1920" height="977" />
+    </state>
+    <state x="168" y="123" width="1200" height="777" key="com.android.tools.idea.avdmanager.AvdListDialog/0.23.1920.977@0.23.1920.977" timestamp="1598549738293" />
+    <state x="433" y="236" key="run.anything.popup" timestamp="1598549725232">
+      <screen x="0" y="23" width="1920" height="977" />
+    </state>
+    <state x="433" y="236" key="run.anything.popup/0.23.1920.977@0.23.1920.977" timestamp="1598549725232" />
   </component>
 </project>

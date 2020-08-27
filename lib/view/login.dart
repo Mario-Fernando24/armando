@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/view/olvidasteContrasena.dart';
 import 'package:startogodomiciliario/view/registrarme.dart';
-import 'package:startogodomiciliario/view/registrarme.dart';
 import 'package:toast/toast.dart';
 
 import '../main.dart';
@@ -73,9 +72,12 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("token", jsonResponse['token']);
         sharedPreferences.setString(
             "idUsuarioLogueado", jsonResponse['idUsuarioLogueado']);
+        sharedPreferences.setString(
+            "name", jsonResponse['name']);
+        sharedPreferences.setString(
+            "email", jsonResponse['email']);
 
-        sharedPreferences.setString("email", jsonResponse['email']);
-        sharedPreferences.setString("name", jsonResponse['name']);
+
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => MainPage()),
             (Route<dynamic> route) => false);

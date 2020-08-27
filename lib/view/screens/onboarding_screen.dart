@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:startogodomiciliario/view/login.dart';
-import 'package:startogodomiciliario/view/utilities/styles.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -97,7 +96,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            Text('Bienvenido a Startogo Domiciliario',
+                            Text('Bienvenido a Startogo drive',
                                 style: TextStyle(
                                     color: Colors.green[900],
                                     fontSize: 24.0,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:startogodomiciliario/shared/preferencias.dart';
+import 'package:flutter/services.dart';
+import 'dart:math' as math;
+
 import 'menuLateral/menuprincial.dart';
 
 class Perfil extends StatefulWidget {
@@ -8,271 +10,292 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
-  //instancio la clase de las preferencias del usuario
-  final prefs = new PreferenciasUsuarios();
-  //declaro la variable del nombre
-  String _nombre = '';
-  String _email = '';
-  String _passwordd = '';
-  String _fecha = '';
-  String _opcionSelecionada = 'Masculino';
+  @override
+  void initState() {
+    super.initState();
 
-  List _listaSelect = ['Masculino', 'Femenino', 'Otros'];
-  //NOS PERMITE MANEJAR LA CAJA DE LA FECHA
-  TextEditingController _inputControllerFecha = new TextEditingController();
+    SystemChrome.setEnabledSystemUIOverlays([]);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Perfil",
+      home: ProfilePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  TextStyle _style() {
+    return TextStyle(fontWeight: FontWeight.bold);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Perfil domiciliario'),
-
-        //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
-        backgroundColor: (prefs.colorSecundario) ? Colors.black : Colors.green,
-      ),
-      drawer: MenuPrincipal(),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-        children: <Widget>[
-          _crearNombre(),
-          Divider(),
-          _crearApellido(),
-          Divider(),
-          _numTelefono(),
-          Divider(),
-          _crearSelectGenero(),
-          Divider(),
-          _crearNumDocumento(),
-          Divider(),
-          _crearPais(),
-          Divider(),
-          _crearEstado(),
-          Divider(),
-          _crearCiudad(),
-          Divider(),
-          //    _crearPersona(),
-          Padding(
-            padding: new EdgeInsets.only(top: 35.0),
-          ),
-          _actualizarPerfil()
-          //boton
-        ],
-      ),
-    );
-  }
-
-  Widget _crearNombre() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          //    counter: Text('Letras ${_nombre.length}'),
-          hintText: 'Nombre',
-          labelText: 'Nombre',
-          suffixIcon: Icon(Icons.people_outline),
-          icon: Icon(Icons.account_circle)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _nombre = valor;
-          //  print(_nombre);
-        });
-      },
-    );
-  }
-
-  Widget _crearApellido() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          //    counter: Text('Letras ${_nombre.length}'),
-          hintText: 'Apellido',
-          labelText: 'Apellido',
-          suffixIcon: Icon(Icons.people_outline),
-          icon: Icon(Icons.account_circle)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _nombre = valor;
-          //  print(_nombre);
-        });
-      },
-    );
-  }
-
-  Widget _numTelefono() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          //    counter: Text('Letras ${_nombre.length}'),
-          hintText: 'N. Telefono',
-          labelText: 'N. Telefono',
-          suffixIcon: Icon(Icons.phone_android),
-          icon: Icon(Icons.phone_android)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _nombre = valor;
-          //  print(_nombre);
-        });
-      },
-    );
-  }
-
-  List<DropdownMenuItem<String>> getOpcionesDropdown() {
-    List<DropdownMenuItem<String>> lista = new List();
-    _listaSelect.forEach((seleccionando) {
-      lista.add(DropdownMenuItem(
-        child: Text(seleccionando),
-        value: seleccionando,
-      ));
-    });
-
-    return lista;
-  }
-
-  Widget _crearSelectGenero() {
-    return Row(
-      children: <Widget>[
-        Icon(Icons.short_text),
-        SizedBox(
-          width: 30.0,
+      appBar: CustomAppBar(),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("Nombre"),
+            SizedBox(
+              height: 4,
+            ),
+            Text(
+              "Startogoejemplo",
+              style: _style(),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Email",
+              style: _style(),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("Startogoejemplo@gmail.com"),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Location",
+              style: _style(),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("New York, USA"),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Language",
+              style: _style(),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("English, French"),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Occupation",
+              style: _style(),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Text("Employee"),
+            SizedBox(
+              height: 16,
+            ),
+            Divider(
+              color: Colors.grey,
+            )
+          ],
         ),
-        Expanded(
-          child: DropdownButton(
-              value: _opcionSelecionada,
-              items: getOpcionesDropdown(),
-              onChanged: (opt) {
-                // print(opt);
-                // para que me lo dibuje el valor que seleccione
-                setState(() {
-                  _opcionSelecionada = opt;
-                });
-              }),
-        )
-      ],
+      ),
     );
   }
+}
 
-  Widget _crearNumDocumento() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      keyboardType: TextInputType.number,
+final String url = "https://www.startogoweb.com/tienda/logoapp.png";
 
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: 'N. Documento',
-          labelText: 'N. Documento',
-          suffixIcon: Icon(Icons.playlist_add_check),
-          icon: Icon(Icons.contacts)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _email = valor;
-          //  print(_nombre);
-        });
-      },
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Size get preferredSize => Size(double.infinity, 320);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipPath(
+      clipper: MyClipper(),
+      child: Container(
+        padding: EdgeInsets.only(top: 4),
+        decoration: BoxDecoration(color: Colors.green, boxShadow: [
+          BoxShadow(color: Colors.red, blurRadius: 20, offset: Offset(0, 0))
+        ]),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                ),
+                Text(
+                  "Perfil Drive",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.add_a_photo,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover, image: NetworkImage(url))),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      "Startogo",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Pendientes",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      "0",
+                      style: TextStyle(fontSize: 26, color: Colors.white),
+                    )
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Entregado",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      "0",
+                      style: TextStyle(fontSize: 26, color: Colors.white),
+                    )
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Hoy",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    Text(
+                      "0",
+                      style: TextStyle(fontSize: 26, color: Colors.white),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                //      Column(
+                //       children: <Widget>[
+                //          Text(
+                //          "Savings",
+                //         style: TextStyle(color: Colors.white),
+                //      ),
+                //        Text(
+                //         "20K",
+                //        style: TextStyle(color: Colors.white, fontSize: 24),
+                //     )
+                //      ],
+                //    ),
+                SizedBox(
+                  width: 32,
+                ),
+                //  Column(
+                //     children: <Widget>[
+                //    Text(
+                //      "July Goals",
+                //      style: TextStyle(color: Colors.white),
+                //    ),
+                //     Text("50K",
+                //          style: TextStyle(color: Colors.white, fontSize: 24))
+                //    ],
+                //  ),
+                SizedBox(
+                  width: 16,
+                )
+              ],
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: GestureDetector(
+                onTap: () {
+                  print("//TODO: button clicked");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 24, 16, 0),
+                  child: Transform.rotate(
+                    angle: (math.pi * 0.05),
+                    child: Container(
+                      width: 110,
+                      height: 32,
+                      child: Center(
+                        child: Text("Editar Perfil"),
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                          boxShadow: [
+                            BoxShadow(color: Colors.black12, blurRadius: 20)
+                          ]),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
+}
 
-  Widget _crearPais() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      keyboardType: TextInputType.text,
+class MyClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path p = Path();
 
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: 'Pais',
-          labelText: 'Pais',
-          suffixIcon: Icon(Icons.ac_unit),
-          icon: Icon(Icons.ac_unit)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _email = valor;
-          //  print(_nombre);
-        });
-      },
-    );
+    p.lineTo(0, size.height - 70);
+    p.lineTo(size.width, size.height);
+
+    p.lineTo(size.width, 0);
+
+    p.close();
+
+    return p;
   }
 
-  Widget _crearEstado() {
-    return TextField(
-      //para que se posecione
-      //  autofocus: true,
-      keyboardType: TextInputType.text,
-
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: 'Estado',
-          labelText: 'Estado',
-          suffixIcon: Icon(Icons.ac_unit),
-          icon: Icon(Icons.ac_unit)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _email = valor;
-          //  print(_nombre);
-        });
-      },
-    );
-  }
-
-  Widget _crearCiudad() {
-    return TextField(
-      //para que se posecione
-      //  obscureText para que me oculto lo que voy escribiendo
-      obscureText: true,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-          hintText: 'Ciudad',
-          labelText: 'Ciudad',
-          suffixIcon: Icon(Icons.ac_unit),
-          icon: Icon(Icons.ac_unit)),
-      //le paso el valor que digito en el input y lo paso por parametro
-      onChanged: (valor) {
-        //si quiero que se vea en tiempo real
-        setState(() {
-          _passwordd = valor;
-          //  print(_nombre);
-        });
-      },
-    );
-  }
-
-  // Widget _crearPersona() {
-  //  return ListTile(
-  //   title: Text('Nombre es: $_nombre'),
-  //   subtitle: Text('Email:$_email '),
-  //   trailing: Text(_opcionSelecionada),
-  //  );
-//  }
-
-  Widget _actualizarPerfil() {
-    return Container(
-      height: 60,
-      child: new RaisedButton(
-          onPressed: () {},
-          elevation: 6.0,
-          color: (prefs.colorSecundario) ? Colors.black : Colors.green,
-          child: Text("Actualizar", style: TextStyle(color: Colors.white)),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0))),
-    );
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

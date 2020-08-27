@@ -37,8 +37,8 @@ class _InicioMapaState extends State<InicioMapa> {
   }
 
   //functions for call 911
-  Future<void> _launched;
-  String _phone = '123';
+  // Future<void> _launched;
+  //String _phone = '123';
   Future<void> _makePhoneCall(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

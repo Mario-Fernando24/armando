@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:startogodomiciliario/shared/preferencias.dart';
-import 'package:startogodomiciliario/view/detallepedidomar.dart';
 
 import 'menuLateral/menuprincial.dart';
 

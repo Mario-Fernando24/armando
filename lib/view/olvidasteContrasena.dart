@@ -18,7 +18,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
   //instanciamos nuestro controlador que es el crud
   Crud auth = new Crud();
   //declaramos de tipo booleano si esta cargando
-  bool _isLoading = false;
+  //bool _isLoading = false;
 
   final TextEditingController _correoController = new TextEditingController();
 
