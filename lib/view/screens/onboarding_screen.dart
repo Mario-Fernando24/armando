@@ -55,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: calcFromH(context, 0.02)),
+            padding: EdgeInsets.symmetric(vertical: calcFromH(context, 0.03)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[

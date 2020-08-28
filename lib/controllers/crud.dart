@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
+import 'package:startogodomiciliario/helpers/apiService.dart';
+
 class Crud {
   //hacemos unas exportaciones el http
   String serverUrl = "https://startogoweb.com/api/";
@@ -12,6 +14,7 @@ class Crud {
   var status;
   var token;
   var idUsuarioLogueado;
+  ApiService apiService = new ApiService();
 
   //creamos la funcion para el login
   loginData(String email, String password) async {
@@ -84,16 +87,7 @@ class Crud {
 
   //funcion para update el producto  "editar"
   void editarData(String id, String nombre, String precio, String stock) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/products/$id";
-
-    http.post(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    }, body: {
+    apiService.post('products/$id', {
       "name": "$nombre",
       "precio": "$precio",
       "stock": "$stock"
@@ -105,16 +99,7 @@ class Crud {
 
   //funcion para update el producto  "editar"
   void pedidoEntregado(String id) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/DomiciliosEntregado/$id";
-
-    http.delete(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    }).then((response) {
+    apiService.delete('DomiciliosEntregado/$id').then((response) {
       print('Responses status : ${response.statusCode}');
       print('data : ${response.body}');
     });
@@ -122,16 +107,7 @@ class Crud {
 
   //funcion para eliminar algun producto, le pasamos por parametro el id del producto que queremos eliminar
   void eliminarProducto(String id) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/products/$id";
-
-    http.delete(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    }).then((response) {
+    apiService.delete('products/$id').then((response) {
       print('Responses status : ${response.statusCode}');
       print('data : ${response.body}');
     });
@@ -139,49 +115,21 @@ class Crud {
 
   //funcion para mostrar todos los Domicilialios activos
   Future<List> getDomiciliarioActivos() async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/mostrarDomiActivo";
-
-    http.Response response = await http.get(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    });
-
+    http.Response response = await apiService.get('mostrarDomiActivo');
     return json.decode(response.body);
   }
 
   //funcion para mostrar todos los productos
 
   Future<List> getDomiciliarioEntregados() async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/mostrarDomiciliosEntregado";
-
-    http.Response response = await http.get(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    });
+    http.Response response = await apiService.get('mostrarDomiciliosEntregado');
 
     return json.decode(response.body);
   }
 
   //metodo en el cual mando el id por parametro del pedido que quiero que se muestre
   Future<List> getDetallePedido(String id) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
-    String myUrl = "https://startogoweb.com/api/DomiciliosEntregado/$id";
-
-    http.Response response = await http.get(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    });
+    http.Response response = await apiService.get('DomiciliosEntregado/$id');
 
     return json.decode(response.body);
   }
