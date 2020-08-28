@@ -68,11 +68,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: SizedBox(
                         width: calcFromW(context, 0.15),
                         height: calcFromH(context, 0.06),
-                        child: AutoSizeText(
-                          'Saltar',
-                          style: TextStyle(
-                            color: Colors.orange[300],
-                            fontSize: 24.0,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: AutoSizeText(
+                            'Saltar',
+                            style: TextStyle(
+                              color: Colors.orange[300],
+                              fontSize: 24.0,
+                            ),
                           ),
                         )),
                   ),
@@ -99,9 +102,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               child: Image(
                                 image: AssetImage('assets/apk1.png'),
                                 height:
-                                    MediaQuery.of(context).size.width - 150.0,
+                                    MediaQuery.of(context).size.width - 120.0,
                                 width:
-                                    MediaQuery.of(context).size.width - 150.0,
+                                    MediaQuery.of(context).size.width - 120.0,
                               ),
                             ),
                             SizedBox(height: 10.0),
@@ -172,15 +175,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   'Siguiente',
                                   style: TextStyle(
                                     color: Colors.green[900],
-                                    fontSize: 24.0,
+                                    fontSize: calcFromW(context, 0.045),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(width: 10.0),
+                                SizedBox(width: calcFromW(context, 0.01)),
                                 Icon(
                                   Icons.arrow_forward,
                                   color: Colors.green[900],
-                                  size: 30.0,
+                                  size: calcFromW(context, 0.065),
                                 ),
                               ],
                             ),
