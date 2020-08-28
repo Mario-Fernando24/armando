@@ -27,7 +27,7 @@ class _DetallePedidoState extends State<DetallePedido> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          title: new AutoSizeText("ee"),
+          title: new AutoSizeText("Detalle"),
 
           //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
           backgroundColor:
@@ -47,6 +47,7 @@ class _DetallePedidoState extends State<DetallePedido> {
         child: new Center(
           child: FutureBuilder<dynamic>(
               builder: (context, pedidoRequest) {
+                print("Builder " + pedidoRequest.hasData.toString());
                 if (pedidoRequest.hasData) {
                   var pedidoData = pedidoRequest.data;
                   return Column(
@@ -55,37 +56,37 @@ class _DetallePedidoState extends State<DetallePedido> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           AutoSizeText(
-                            "#: $pedidoData['cabezapedido']['id']",
+                            "#: ${pedidoData['cabezapedido']['id']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Direccion: $pedidoData['cabezapedido']['direccion']",
+                            "Direccion: ${pedidoData['cabezapedido']['direccion']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Ciudad: $pedidoData['cabezapedido']['ciudad']",
+                            "Ciudad: ${pedidoData['cabezapedido']['ciudad']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Estado:  $pedidoData['cabezapedido']['estadodir']",
+                            "Estado:  ${pedidoData['cabezapedido']['estadodir']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Codigo Postal: $pedidoData['cabezapedido']['codigopostal']",
+                            "Codigo Postal: ${pedidoData['cabezapedido']['codigopostal']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Pais: $pedidoData['cabezapedido']['pais']",
+                            "Pais: ${pedidoData['cabezapedido']['pais']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                           AutoSizeText(
-                            "Pago: $pedidoData['cabezapedido']['formaPago']",
+                            "Pago: ${pedidoData['cabezapedido']['formaPago']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
@@ -105,17 +106,18 @@ class _DetallePedidoState extends State<DetallePedido> {
                             DataColumn(label: Text("subtotal")),
                             DataColumn(label: Text("observacion")),
                           ],
-                          rows: pedidoData['detallepedido'].map((detalle) {
+                          rows: pedidoData['detallepedido']
+                              .map<DataRow>((detalle) {
                             return DataRow(selected: true, cells: [
                               //, showEditIcon: true
-                              DataCell(Text(detalle['nombre_tienda'])),
-                              DataCell(Text(detalle['nombre'])),
-                              DataCell(Text(detalle['cantidad'])),
-                              DataCell(Text(detalle['venta'])),
-                              DataCell(Text(detalle['subtotal'])),
-                              DataCell(Text(detalle['observacion'])),
+                              DataCell(Text("${detalle['nombre_tienda']}")),
+                              DataCell(Text("${detalle['nombre']}")),
+                              DataCell(Text("${detalle['cantidad']}")),
+                              DataCell(Text("${detalle['venta']}")),
+                              DataCell(Text("${detalle['subtotal']}")),
+                              DataCell(Text("${detalle['observacion']}")),
                             ]);
-                          })),
+                          }).toList()),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
@@ -123,22 +125,22 @@ class _DetallePedidoState extends State<DetallePedido> {
                             padding: const EdgeInsets.only(top: 30.0),
                           ),
                           new AutoSizeText(
-                            "Subtotal: $pedidoData['cabezapedido']['subtotalpedidoido']",
+                            "Subtotal: ${pedidoData['cabezapedido']['subtotalpedidoido']}",
                             style: new TextStyle(fontSize: 15.0),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Impuesto: $pedidoData['cabezapedido']['impuesto']",
+                            "Impuesto: ${pedidoData['cabezapedido']['impuesto']}",
                             style: new TextStyle(fontSize: 15.0),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Propina: $pedidoData['cabezapedido']['ValorPropina']",
+                            "Propina: ${pedidoData['cabezapedido']['ValorPropina']}",
                             style: new TextStyle(fontSize: 15.0),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Total: $pedidoData['cabezapedido']['totalcobrar']",
+                            "Total: ${pedidoData['cabezapedido']['totalcobrar']}",
                             style: new TextStyle(fontSize: 15.0),
                           ),
                           Divider(),
