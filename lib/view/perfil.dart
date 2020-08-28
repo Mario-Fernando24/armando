@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 
-import 'menuLateral/menuprincial.dart';
-
 class Perfil extends StatefulWidget {
   @override
   _PerfilState createState() => _PerfilState();

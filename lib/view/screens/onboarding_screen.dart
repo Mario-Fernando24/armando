@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:startogodomiciliario/view/login.dart';
+import 'package:startogodomiciliario/view/utilities/screenUtilCalc.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -54,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 40.0),
+            padding: EdgeInsets.symmetric(vertical: calcFromH(context, 0.02)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -64,17 +65,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () => Navigator.of(context).push(
                         new MaterialPageRoute(
                             builder: (BuildContext context) => LoginPage())),
-                    child: AutoSizeText(
-                      'Saltar',
-                      style: TextStyle(
-                        color: Colors.orange[300],
-                        fontSize: 24.0,
-                      ),
-                    ),
+                    child: SizedBox(
+                        width: calcFromW(context, 0.15),
+                        height: calcFromH(context, 0.06),
+                        child: AutoSizeText(
+                          'Saltar',
+                          style: TextStyle(
+                            color: Colors.orange[300],
+                            fontSize: 24.0,
+                          ),
+                        )),
                   ),
                 ),
                 Container(
-                  height: 600.0,
+                  height: calcFromH(context, 0.96) - 100,
                   child: PageView(
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
@@ -85,15 +89,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     },
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.all(1.0),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 1.0,
+                            horizontal: calcFromH(context, 0.03)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Center(
                               child: Image(
                                 image: AssetImage('assets/apk1.png'),
-                                height: 400.0,
-                                width: 400.0,
+                                height:
+                                    MediaQuery.of(context).size.width - 150.0,
+                                width:
+                                    MediaQuery.of(context).size.width - 150.0,
                               ),
                             ),
                             SizedBox(height: 10.0),
@@ -107,7 +115,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               'Con nuestra Aplicación usted puede comenzar a recibir y llevar pedidos en tiempo real.',
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 20.0,
+                                  fontSize: 18.0,
                                   fontWeight: FontWeight.normal),
                             ),
                           ],

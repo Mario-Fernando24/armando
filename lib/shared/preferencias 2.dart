@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/material.dart';
 
 //podemos guardar el token, id del usuario, preferencias si queremos recibir notificaciones y color o tema de la apk
 class PreferenciasUsuarios {
