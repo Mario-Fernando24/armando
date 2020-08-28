@@ -9,9 +9,10 @@ import 'menuLateral/menuprincial.dart';
 class DetallePedido extends StatefulWidget {
   List list;
   int index;
+  int id;
 
   //Hago el constructo y le paso esos parametros
-  DetallePedido({this.index, this.list});
+  DetallePedido({this.index, this.list, this.id});
 
   @override
   _DetallePedidoState createState() => _DetallePedidoState();
@@ -44,107 +45,114 @@ class _DetallePedidoState extends State<DetallePedido> {
 
       child: new Card(
         child: new Center(
-          child: Column(
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  AutoSizeText(
-                    "#: ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Direccion: ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Ciudad:  ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Estado:  ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Codigo Postal: ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Pais: ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "Pago: ",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  AutoSizeText(
-                    "mm",
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                  ),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                ],
-              ),
-              DataTable(
-                  sortColumnIndex: 2,
-                  sortAscending: false,
-                  columns: [
-                    DataColumn(label: Text("negocio")),
-                    DataColumn(label: Text("producto")),
-                    DataColumn(label: Text("cantidad"), numeric: true),
-                    DataColumn(label: Text("p venta")),
-                    DataColumn(label: Text("subtotal")),
-                    DataColumn(label: Text("observacion")),
-                  ],
-                  rows: FutureBuilder<List<DataRow>>(
-                      builder: (context, rows) {
-                        return [
-                          DataRow(selected: true, cells: [
-                            //, showEditIcon: true
-                            DataCell(Text("Andres")),
-                            DataCell(Text("Cruz")),
-                            DataCell(Text("28")),
-                            DataCell(Text("28")),
-                            DataCell(Text("28")),
-                            DataCell(Text("28")),
-                          ])
-                        ];
-                      },
-                      future: crud.getDetallePedido(id))),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                  ),
-                  new AutoSizeText(
-                    "Subtotal: ",
-                    style: new TextStyle(fontSize: 15.0),
-                  ),
-                  Divider(),
-                  new AutoSizeText(
-                    "Impuesto: ",
-                    style: new TextStyle(fontSize: 15.0),
-                  ),
-                  Divider(),
-                  new AutoSizeText(
-                    "Propina: ",
-                    style: new TextStyle(fontSize: 15.0),
-                  ),
-                  Divider(),
-                  new AutoSizeText(
-                    "Total: ",
-                    style: new TextStyle(fontSize: 15.0),
-                  ),
-                  Divider(),
-                  new Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: FutureBuilder<dynamic>(
+              builder: (context, pedidoRequest) {
+                if (pedidoRequest.hasData) {
+                  var pedidoData = pedidoRequest.data;
+                  return Column(
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          AutoSizeText(
+                            "#: $pedidoData['cabezapedido']['id']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Direccion: $pedidoData['cabezapedido']['direccion']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Ciudad: $pedidoData['cabezapedido']['ciudad']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Estado:  $pedidoData['cabezapedido']['estadodir']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Codigo Postal: $pedidoData['cabezapedido']['codigopostal']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Pais: $pedidoData['cabezapedido']['pais']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "Pago: $pedidoData['cabezapedido']['formaPago']",
+                            style:
+                                TextStyle(fontSize: 15.0, color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                        ],
+                      ),
+                      DataTable(
+                          sortColumnIndex: 2,
+                          sortAscending: false,
+                          columns: [
+                            DataColumn(label: Text("negocio")),
+                            DataColumn(label: Text("producto")),
+                            DataColumn(label: Text("cantidad"), numeric: true),
+                            DataColumn(label: Text("p venta")),
+                            DataColumn(label: Text("subtotal")),
+                            DataColumn(label: Text("observacion")),
+                          ],
+                          rows: pedidoData['detallepedido'].map((detalle) {
+                            return DataRow(selected: true, cells: [
+                              //, showEditIcon: true
+                              DataCell(Text(detalle['nombre_tienda'])),
+                              DataCell(Text(detalle['nombre'])),
+                              DataCell(Text(detalle['cantidad'])),
+                              DataCell(Text(detalle['venta'])),
+                              DataCell(Text(detalle['subtotal'])),
+                              DataCell(Text(detalle['observacion'])),
+                            ]);
+                          })),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 30.0),
+                          ),
+                          new AutoSizeText(
+                            "Subtotal: $pedidoData['cabezapedido']['subtotalpedidoido']",
+                            style: new TextStyle(fontSize: 15.0),
+                          ),
+                          Divider(),
+                          new AutoSizeText(
+                            "Impuesto: $pedidoData['cabezapedido']['impuesto']",
+                            style: new TextStyle(fontSize: 15.0),
+                          ),
+                          Divider(),
+                          new AutoSizeText(
+                            "Propina: $pedidoData['cabezapedido']['ValorPropina']",
+                            style: new TextStyle(fontSize: 15.0),
+                          ),
+                          Divider(),
+                          new AutoSizeText(
+                            "Total: $pedidoData['cabezapedido']['totalcobrar']",
+                            style: new TextStyle(fontSize: 15.0),
+                          ),
+                          Divider(),
+                          new Padding(
+                            padding: const EdgeInsets.only(top: 30.0),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                }
+                return CircularProgressIndicator();
+              },
+              future: crud.getDetallePedido(this.widget.id)),
         ),
       ),
     );
