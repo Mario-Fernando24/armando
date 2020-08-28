@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _PruebasMarioState extends State<PruebasMario> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Detalle del pedido prueba"),
+        title: new AutoSizeText("Detalle del pedido prueba"),
       ),
       body: new FutureBuilder<List>(
         future: getDetallePedido(),
@@ -64,7 +65,7 @@ class ItemList extends StatelessWidget {
             child: new GestureDetector(
               child: new Card(
                 child: new ListTile(
-                    title: new Text(
+                    title: new AutoSizeText(
                   "mm:",
                   style:
                       TextStyle(fontSize: 25.0, color: Colors.deepOrangeAccent),

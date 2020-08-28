@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
@@ -24,7 +25,7 @@ class _DetallePedidoState extends State<DetallePedido> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          title: new Text("ee"),
+          title: new AutoSizeText("ee"),
 
           //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
           backgroundColor:
@@ -47,35 +48,35 @@ class _DetallePedidoState extends State<DetallePedido> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text(
+                  AutoSizeText(
                     "#: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "Direccion: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "Ciudad:  ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "Estado:  ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "codigo postal: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "Pais: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "Pago: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
-                  Text(
+                  AutoSizeText(
                     "mm",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
@@ -145,22 +146,22 @@ class _DetallePedidoState extends State<DetallePedido> {
                   new Padding(
                     padding: const EdgeInsets.only(top: 30.0),
                   ),
-                  new Text(
+                  new AutoSizeText(
                     "Subtotal: ",
                     style: new TextStyle(fontSize: 15.0),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Impuesto: ",
                     style: new TextStyle(fontSize: 15.0),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Propina: ",
                     style: new TextStyle(fontSize: 15.0),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Total: ",
                     style: new TextStyle(fontSize: 15.0),
                   ),

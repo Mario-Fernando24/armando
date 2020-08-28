@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
 import 'package:fancy_dialog/FancyGif.dart';
 import 'package:fancy_dialog/FancyTheme.dart';
@@ -35,7 +36,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
       title: 'Olvidaste tu contraseña',
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: AutoSizeText(
             'Olvidaste tu contraseña',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -54,10 +55,10 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                 _imagenmaa(),
 
                 ListTile(
-                  title: Text('¿Olvidaste tu contraseña?',
+                  title: AutoSizeText('¿Olvidaste tu contraseña?',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  subtitle: Text(
+                  subtitle: AutoSizeText(
                     'Aquí puede recuperar fácilmente una nueva contraseña, le enviaremos un enlace a su correo electronico para que restablesca su cuenta,',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -89,7 +90,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                     textColor: Colors.white,
                     elevation: 6.0,
                     color: Colors.red,
-                    child: Text("Recuperar mi cuenta"),
+                    child: AutoSizeText("Recuperar mi cuenta"),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     onPressed: () => {

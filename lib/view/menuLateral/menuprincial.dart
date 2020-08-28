@@ -64,19 +64,13 @@ class MenuPrincipal extends StatelessWidget {
               title: new Text("Mi billetera"),
               trailing: new Icon(Icons.attach_money,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
-              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                  //LLAMO A LA CLASE LISTAR PRODUCTO
-
-                  ))),
+              onTap: () {}),
           new Divider(),
           new ListTile(
               title: new Text("Estadisticas"),
               trailing: new Icon(Icons.assessment,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
-              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                  //LLAMO A LA CLASE LISTAR PRODUCTO
-
-                  ))),
+              onTap: () {}),
           new Divider(),
           new ListTile(
               title: new Text("Ajustes"),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 import 'package:startogodomiciliario/view/menuLateral/menuprincial.dart';
@@ -34,7 +35,7 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Ajustes'),
+          title: AutoSizeText('Ajustes'),
 
           //para activar el color
           backgroundColor:
@@ -45,7 +46,7 @@ class _SettingPageState extends State<SettingPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(10.0),
-              child: Text(
+              child: AutoSizeText(
                 'Ajustes',
                 style: TextStyle(
                     fontSize: 40.0,
@@ -57,7 +58,7 @@ class _SettingPageState extends State<SettingPage> {
             Divider(),
             SwitchListTile(
               value: _colorSegundario,
-              title: Text(
+              title: AutoSizeText(
                 'Modo Oscuro',
                 style: TextStyle(
                     fontStyle: FontStyle.italic,
@@ -78,7 +79,7 @@ class _SettingPageState extends State<SettingPage> {
             //caja de texto para ingresar un string
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(prefs.nombreUsuario,
+              child: AutoSizeText(prefs.nombreUsuario,
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -88,7 +89,7 @@ class _SettingPageState extends State<SettingPage> {
             Divider(),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Text(prefs.correoUsuario,
+              child: AutoSizeText(prefs.correoUsuario,
                   style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -100,7 +101,7 @@ class _SettingPageState extends State<SettingPage> {
             Divider(),
             SwitchListTile(
               value: _colorSegundario,
-              title: Text(
+              title: AutoSizeText(
                 'Idioma español',
                 style: TextStyle(
                     fontStyle: FontStyle.italic,

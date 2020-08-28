@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:startogodomiciliario/shared/preferencias.dart';
@@ -35,7 +36,7 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Domicilios Entregados"),
+        title: new AutoSizeText("Domicilios Entregados"),
       ),
       drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(
@@ -88,11 +89,11 @@ class ItemList extends StatelessWidget {
                         list[i]['id_domiciliario'].toString())
                       ListTile(
                         leading: Icon(Icons.shopping_cart, color: Colors.green),
-                        title: new Text(
+                        title: new AutoSizeText(
                           "Negocio: " + list[i]['nombre_tienda'].toString(),
                           style: TextStyle(fontSize: 20.0, color: Colors.red),
                         ),
-                        subtitle: Text(
+                        subtitle: AutoSizeText(
                           list[i]['nombre_cliente'].toString() +
                               "\n" +
                               list[i]['correo_cliente'].toString() +

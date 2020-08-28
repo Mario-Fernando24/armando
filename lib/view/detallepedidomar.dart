@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 
@@ -22,13 +23,13 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
 
   void confirm() {
     AlertDialog alertDialog = AlertDialog(
-      content: new Text(
+      content: new AutoSizeText(
           "Ver detalle '${widget.list[widget.index]['nombre_tienda']}'"),
       actions: <Widget>[
         new RaisedButton(
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text(
+          child: new AutoSizeText(
             "SI",
             style: new TextStyle(color: Colors.black),
           ),
@@ -41,7 +42,8 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
         new RaisedButton(
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text("NO ", style: new TextStyle(color: Colors.black)),
+          child: new AutoSizeText("NO ",
+              style: new TextStyle(color: Colors.black)),
           color: Colors.red,
           onPressed: () => Navigator.pop(context),
         ),
@@ -54,13 +56,13 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
 //metodo para confirmar si entrego el pedido satisfactoriamente
   void confirmarentrega() {
     AlertDialog alertDialog = AlertDialog(
-      content: new Text(
+      content: new AutoSizeText(
           "El cliente recibio el pedido de '${widget.list[widget.index]['nombre_tienda']}'"),
       actions: <Widget>[
         new RaisedButton(
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text(
+          child: new AutoSizeText(
             "SI",
             style: new TextStyle(color: Colors.black),
           ),
@@ -76,7 +78,8 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
         new RaisedButton(
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text("NO ", style: new TextStyle(color: Colors.black)),
+          child: new AutoSizeText("NO ",
+              style: new TextStyle(color: Colors.black)),
           color: Colors.red,
           onPressed: () => Navigator.pop(context),
         ),
@@ -90,7 +93,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-            title: new Text(
+            title: new AutoSizeText(
           "${widget.list[widget.index]['nombre_tienda']}",
           style: new TextStyle(
             fontSize: 20.0,
@@ -113,7 +116,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     color: Colors.black,
                     size: 50.0,
                   ),
-                  new Text(
+                  new AutoSizeText(
                     "Startogo Domiciliario",
                     style: new TextStyle(
                         fontSize: 25.0,
@@ -124,25 +127,25 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     padding: const EdgeInsets.only(top: 20.0),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Subtotal: " + widget.list[widget.index]['subtotalpedido'],
                     style: new TextStyle(
                         fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Impuesto: ${widget.list[widget.index]['impuesto']}",
                     style: new TextStyle(
                         fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Propina: ${widget.list[widget.index]['ValorPropina']}",
                     style: new TextStyle(
                         fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Divider(),
-                  new Text(
+                  new AutoSizeText(
                     "Total: ${widget.list[widget.index]['totalcobrar']}",
                     style: new TextStyle(
                         fontSize: 25.0, fontWeight: FontWeight.bold),
@@ -154,7 +157,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new RaisedButton(
-                        child: new Text("Detalles Pedido"),
+                        child: new AutoSizeText("Detalles Pedido"),
                         color: Colors.green,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(90.0)),
@@ -162,7 +165,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                       ),
                       VerticalDivider(),
                       new RaisedButton(
-                        child: new Text("entregar pedido"),
+                        child: new AutoSizeText("entregar pedido"),
                         color: Colors.blue,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0)),

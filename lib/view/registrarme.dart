@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
 import 'package:fancy_dialog/FancyGif.dart';
 import 'package:fancy_dialog/FancyTheme.dart';
@@ -39,7 +40,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
       title: 'Registro de Domiciliario',
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: AutoSizeText(
             'Registrar nuevo Domiciliario',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -138,7 +139,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                     textColor: Colors.white,
                     elevation: 10.0,
                     color: Colors.red,
-                    child: Text("Registrarse"),
+                    child: AutoSizeText("Registrarse"),
                     onPressed: () => {
                       if (!RegExp(
                               r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')

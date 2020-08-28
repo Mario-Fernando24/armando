@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:startogodomiciliario/view/domiciliosActivos.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _EditarProductoState extends State<EditarProducto> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("Editar Producto"),
+        title: new AutoSizeText("Editar Producto"),
       ),
       body: Form(
         child: ListView(
@@ -98,7 +99,7 @@ class _EditarProductoState extends State<EditarProducto> {
               ),
 
               new RaisedButton(
-                child: new Text("Editar"),
+                child: new AutoSizeText("Editar"),
                 color: Colors.blueAccent,
                 onPressed: () {
                   crud.editarData(

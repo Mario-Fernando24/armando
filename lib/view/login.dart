@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,11 +73,8 @@ class _LoginPageState extends State<LoginPage> {
         sharedPreferences.setString("token", jsonResponse['token']);
         sharedPreferences.setString(
             "idUsuarioLogueado", jsonResponse['idUsuarioLogueado']);
-        sharedPreferences.setString(
-            "name", jsonResponse['name']);
-        sharedPreferences.setString(
-            "email", jsonResponse['email']);
-
+        sharedPreferences.setString("name", jsonResponse['name']);
+        sharedPreferences.setString("email", jsonResponse['email']);
 
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => MainPage()),
@@ -110,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
             elevation: 6.0,
             color: Colors.red,
-            child: Text("Ingresar",
+            child: AutoSizeText("Ingresar",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 25.0,
@@ -126,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
             alignment: Alignment.topCenter,
             child: CupertinoButton(
               padding: EdgeInsets.symmetric(vertical: 15),
-              child: Text(
+              child: AutoSizeText(
                 "Registrarme",
                 style: TextStyle(
                     fontSize: 18.0,
@@ -145,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
             alignment: Alignment.topCenter,
             child: CupertinoButton(
               padding: EdgeInsets.symmetric(vertical: 4),
-              child: Text(
+              child: AutoSizeText(
                 "Olvide mi contraseña",
                 style: TextStyle(
                     fontSize: 13.0, color: Colors.white, fontFamily: 'sans'),

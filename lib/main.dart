@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 import 'package:startogodomiciliario/view/inicioapp.dart';
 import 'package:startogodomiciliario/view/login.dart';
@@ -70,7 +71,7 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Startogo Drive",
+        title: AutoSizeText("Startogo Drive",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
 
         //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
@@ -94,7 +95,7 @@ class _MainPageState extends State<MainPage> {
                       builder: (BuildContext context) => LoginPage()),
                   (Route<dynamic> route) => false);
             },
-            child: Text("Salir",
+            child: AutoSizeText("Salir",
                 style: TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.bold,

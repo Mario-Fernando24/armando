@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:startogodomiciliario/view/login.dart';
@@ -63,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     onPressed: () => Navigator.of(context).push(
                         new MaterialPageRoute(
                             builder: (BuildContext context) => LoginPage())),
-                    child: Text(
+                    child: AutoSizeText(
                       'Saltar',
                       style: TextStyle(
                         color: Colors.orange[300],
@@ -96,13 +97,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            Text('Bienvenido a Startogo drive',
+                            AutoSizeText('Bienvenido a Startogo drive',
                                 style: TextStyle(
                                     color: Colors.green[900],
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold)),
                             SizedBox(height: 10.0),
-                            Text(
+                            AutoSizeText(
                               'Con nuestra Aplicación usted puede comenzar a recibir y llevar pedidos en tiempo real.',
                               style: TextStyle(
                                   color: Colors.black,
@@ -159,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                Text(
+                                AutoSizeText(
                                   'Siguiente',
                                   style: TextStyle(
                                     color: Colors.green[900],
@@ -178,7 +179,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                       )
-                    : Text(''),
+                    : AutoSizeText(''),
               ],
             ),
           ),

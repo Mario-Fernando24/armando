@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
@@ -41,58 +42,58 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Nombre"),
+            AutoSizeText("Nombre"),
             SizedBox(
               height: 4,
             ),
-            Text(
+            AutoSizeText(
               "Startogoejemplo",
               style: _style(),
             ),
             SizedBox(
               height: 16,
             ),
-            Text(
+            AutoSizeText(
               "Email",
               style: _style(),
             ),
             SizedBox(
               height: 4,
             ),
-            Text("Startogoejemplo@gmail.com"),
+            AutoSizeText("Startogoejemplo@gmail.com"),
             SizedBox(
               height: 16,
             ),
-            Text(
+            AutoSizeText(
               "Location",
               style: _style(),
             ),
             SizedBox(
               height: 4,
             ),
-            Text("New York, USA"),
+            AutoSizeText("New York, USA"),
             SizedBox(
               height: 16,
             ),
-            Text(
+            AutoSizeText(
               "Language",
               style: _style(),
             ),
             SizedBox(
               height: 4,
             ),
-            Text("English, French"),
+            AutoSizeText("English, French"),
             SizedBox(
               height: 16,
             ),
-            Text(
+            AutoSizeText(
               "Occupation",
               style: _style(),
             ),
             SizedBox(
               height: 4,
             ),
-            Text("Employee"),
+            AutoSizeText("Employee"),
             SizedBox(
               height: 16,
             ),
@@ -133,7 +134,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                   ),
                   onPressed: () {},
                 ),
-                Text(
+                AutoSizeText(
                   "Perfil Drive",
                   style: TextStyle(
                     color: Colors.white,
@@ -165,7 +166,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                     SizedBox(
                       height: 16,
                     ),
-                    Text(
+                    AutoSizeText(
                       "Startogo",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )
@@ -173,7 +174,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 ),
                 Column(
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       "Pendientes",
                       style: TextStyle(color: Colors.white),
                     ),
@@ -185,11 +186,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 ),
                 Column(
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       "Entregado",
                       style: TextStyle(color: Colors.white),
                     ),
-                    Text(
+                    AutoSizeText(
                       "0",
                       style: TextStyle(fontSize: 26, color: Colors.white),
                     )
@@ -197,11 +198,11 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 ),
                 Column(
                   children: <Widget>[
-                    Text(
+                    AutoSizeText(
                       "Hoy",
                       style: TextStyle(color: Colors.white),
                     ),
-                    Text(
+                    AutoSizeText(
                       "0",
                       style: TextStyle(fontSize: 26, color: Colors.white),
                     )
@@ -259,7 +260,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                       width: 110,
                       height: 32,
                       child: Center(
-                        child: Text("Editar Perfil"),
+                        child: AutoSizeText("Editar Perfil"),
                       ),
                       decoration: BoxDecoration(
                           color: Colors.white,
