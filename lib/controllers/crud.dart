@@ -128,8 +128,8 @@ class Crud {
   }
 
   //metodo en el cual mando el id por parametro del pedido que quiero que se muestre
-  Future<List> getDetallePedido(String id) async {
-    http.Response response = await apiService.get('DomiciliosEntregado/$id');
+  Future<Map> getDetallePedido(int id) async {
+    var response = await apiService.get('DomiciliosEntregado/$id');
 
     return json.decode(response.body);
   }

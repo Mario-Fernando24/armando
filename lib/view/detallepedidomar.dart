@@ -35,7 +35,8 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
           color: Colors.green,
           onPressed: () {
             Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => DetallePedido()));
+                builder: (BuildContext context) =>
+                    DetallePedido(id: widget.list[widget.index]['id'])));
           },
         ),
         new RaisedButton(
