@@ -5,6 +5,7 @@ import 'package:startogodomiciliario/shared/preferencias.dart';
 
 import 'menuLateral/menuprincial.dart';
 
+// ignore: must_be_immutable
 class DetallePedido extends StatefulWidget {
   List list;
   int index;
@@ -53,7 +54,7 @@ class _DetallePedidoState extends State<DetallePedido> {
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(
-                    "DirecciÒn: ",
+                    "Direccion: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(
@@ -65,7 +66,7 @@ class _DetallePedidoState extends State<DetallePedido> {
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(
-                    "codigo postal: ",
+                    "Codigo Postal: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(
@@ -86,60 +87,31 @@ class _DetallePedidoState extends State<DetallePedido> {
                 ],
               ),
               DataTable(
-                sortColumnIndex: 2,
-                sortAscending: false,
-                columns: [
-                  DataColumn(label: Text("negocio")),
-                  DataColumn(label: Text("producto")),
-                  DataColumn(label: Text("cantidad"), numeric: true),
-                  DataColumn(label: Text("p venta")),
-                  DataColumn(label: Text("subtotal")),
-                  DataColumn(label: Text("observacion")),
-                ],
-                rows: [
-                  DataRow(selected: true, cells: [
-                    //, showEditIcon: true
-                    DataCell(Text("Andres")),
-                    DataCell(Text("Cruz")),
-                    DataCell(Text("28")),
-                    DataCell(Text("28")),
-                    DataCell(Text("28")),
-                    DataCell(Text("28")),
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999")),
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999"))
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999")),
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999"))
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999")),
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999"))
-                  ]),
-                  DataRow(cells: [
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999")),
-                    DataCell(Text("Ramos")),
-                    DataCell(Text("Ayu")),
-                    DataCell(Text("999"))
-                  ])
-                ],
-              ),
+                  sortColumnIndex: 2,
+                  sortAscending: false,
+                  columns: [
+                    DataColumn(label: Text("negocio")),
+                    DataColumn(label: Text("producto")),
+                    DataColumn(label: Text("cantidad"), numeric: true),
+                    DataColumn(label: Text("p venta")),
+                    DataColumn(label: Text("subtotal")),
+                    DataColumn(label: Text("observacion")),
+                  ],
+                  rows: FutureBuilder<List<DataRow>>(
+                      builder: (context, rows) {
+                        return [
+                          DataRow(selected: true, cells: [
+                            //, showEditIcon: true
+                            DataCell(Text("Andres")),
+                            DataCell(Text("Cruz")),
+                            DataCell(Text("28")),
+                            DataCell(Text("28")),
+                            DataCell(Text("28")),
+                            DataCell(Text("28")),
+                          ])
+                        ];
+                      },
+                      future: crud.getDetallePedido(id))),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
