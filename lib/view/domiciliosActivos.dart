@@ -37,7 +37,7 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Domicilios Activos"),
+        title: new AutoSizeText("Domicilios Activo"),
       ),
       drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(

@@ -66,7 +66,7 @@ class ItemList extends StatelessWidget {
               child: new Card(
                 child: new ListTile(
                     title: new AutoSizeText(
-                  "mm:",
+                  "mmm:",
                   style:
                       TextStyle(fontSize: 25.0, color: Colors.deepOrangeAccent),
                 )),

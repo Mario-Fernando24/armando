@@ -37,7 +37,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
       ),
       //final del color scafoll
       debugShowCheckedModeBanner: false,
-      title: 'Registro de Domiciliario',
+      title: 'Registro de Domiciliario.',
       home: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(

@@ -10,7 +10,7 @@ class _MarioPruState extends State<MarioPru> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startogo',
+      title: 'Startogo Driver',
       debugShowCheckedModeBanner: false,
       //llamo la funcion donde esta style e imagen del inicio de la aplicacion cuando instalo la apk
       home: OnboardingScreen(),

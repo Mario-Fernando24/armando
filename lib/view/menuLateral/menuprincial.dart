@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
@@ -20,7 +21,7 @@ class MenuPrincipal extends StatelessWidget {
         children: <Widget>[
           _imagenm(),
           Center(
-            child: Text(prefs.nombreUsuario,
+            child: AutoSizeText(prefs.nombreUsuario,
                 style: TextStyle(
                     fontSize: 25.0,
                     color: Colors.black,
@@ -28,14 +29,14 @@ class MenuPrincipal extends StatelessWidget {
           ),
           new Divider(),
           new ListTile(
-              title: new Text("Inicio"),
+              title: new AutoSizeText("Inicio"),
               trailing: new Icon(Icons.home,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => MainPage()))),
           new Divider(),
           new ListTile(
-              title: new Text("Perfil"),
+              title: new AutoSizeText("Perfil"),
               trailing: new Icon(Icons.person_add,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
@@ -43,7 +44,7 @@ class MenuPrincipal extends StatelessWidget {
                   builder: (BuildContext context) => Perfil()))),
           new Divider(),
           new ListTile(
-              title: new Text("Pedidos Activos"),
+              title: new AutoSizeText("Pedidos Activos"),
               trailing: new Icon(Icons.shopping_cart,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
@@ -52,7 +53,7 @@ class MenuPrincipal extends StatelessWidget {
                   builder: (BuildContext context) => DomiciliosActivos()))),
           new Divider(),
           new ListTile(
-              title: new Text("Historial de Pedidos"),
+              title: new AutoSizeText("Historial de Pedidos"),
               trailing: new Icon(Icons.history,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
@@ -61,19 +62,19 @@ class MenuPrincipal extends StatelessWidget {
                   builder: (BuildContext context) => DomicilioEntregado()))),
           new Divider(),
           new ListTile(
-              title: new Text("Mi billetera"),
+              title: new AutoSizeText("Mi billetera"),
               trailing: new Icon(Icons.attach_money,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () {}),
           new Divider(),
           new ListTile(
-              title: new Text("Estadisticas"),
+              title: new AutoSizeText("Estadisticas"),
               trailing: new Icon(Icons.assessment,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () {}),
           new Divider(),
           new ListTile(
-              title: new Text("Ajustes"),
+              title: new AutoSizeText("Ajustes"),
               trailing: new Icon(Icons.settings,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
@@ -81,7 +82,7 @@ class MenuPrincipal extends StatelessWidget {
                   builder: (BuildContext context) => SettingPage()))),
           new Divider(),
           new ListTile(
-              title: new Text("Salir"),
+              title: new AutoSizeText("Salir"),
               trailing: new Icon(Icons.close, color: Colors.red),
               onTap: () async {
                 //cierro session y elimino el token que esat guardadas en las preferencias de la apk

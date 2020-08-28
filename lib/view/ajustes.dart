@@ -102,7 +102,7 @@ class _SettingPageState extends State<SettingPage> {
             SwitchListTile(
               value: _colorSegundario,
               title: AutoSizeText(
-                'Idioma español',
+                'Idioma',
                 style: TextStyle(
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold,

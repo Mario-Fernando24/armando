@@ -250,7 +250,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
               alignment: Alignment.bottomRight,
               child: GestureDetector(
                 onTap: () {
-                  print("//TODO: button clicked");
+                  print("//TODO: button dd");
                 },
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 24, 16, 0),

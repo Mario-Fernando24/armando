@@ -59,7 +59,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   subtitle: AutoSizeText(
-                    'Aquí puede recuperar fácilmente una nueva contraseña, le enviaremos un enlace a su correo electronico para que restablesca su cuenta,',
+                    'Aquí puede recuperar fácilmente una nueva contraseña, le enviaremos un enlace a su correo electronico para que restablecer su cuenta,',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

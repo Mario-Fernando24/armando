@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: AutoSizeText("Startogo Drive",
+        title: AutoSizeText("Startogo Driver",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
 
         //para activar el color condicion si el colorSegundario es true que muestre negro si no verde

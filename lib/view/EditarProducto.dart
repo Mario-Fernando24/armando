@@ -39,7 +39,7 @@ class _EditarProductoState extends State<EditarProducto> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Editar Producto"),
+        title: new AutoSizeText("Editar Productos"),
       ),
       body: Form(
         child: ListView(

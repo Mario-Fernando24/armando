@@ -53,7 +53,7 @@ class _DetallePedidoState extends State<DetallePedido> {
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(
-                    "Direccion: ",
+                    "DirecciÒn: ",
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                   ),
                   AutoSizeText(

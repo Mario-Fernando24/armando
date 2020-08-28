@@ -24,7 +24,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
   void confirm() {
     AlertDialog alertDialog = AlertDialog(
       content: new AutoSizeText(
-          "Ver detalle '${widget.list[widget.index]['nombre_tienda']}'"),
+          "Detalle '${widget.list[widget.index]['nombre_tienda']}'"),
       actions: <Widget>[
         new RaisedButton(
           shape: new RoundedRectangleBorder(

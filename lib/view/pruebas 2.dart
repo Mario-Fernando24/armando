@@ -33,7 +33,7 @@ class _PruebasMarioState extends State<PruebasMario> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Detalle del pedido prueba"),
+        title: new AutoSizeText("Detalles del pedido prueba"),
       ),
       body: new FutureBuilder<List>(
         future: getDetallePedido(),

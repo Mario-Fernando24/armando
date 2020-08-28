@@ -36,7 +36,7 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Domicilios Entregados"),
+        title: new AutoSizeText("Domicilio Entregados"),
       ),
       drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(
