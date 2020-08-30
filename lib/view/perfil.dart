@@ -1,300 +1,436 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:math' as math;
+import 'package:startogodomiciliario/controllers/crud.dart';
+import 'package:startogodomiciliario/shared/preferencias.dart';
 
+import 'menuLateral/menuprincial.dart';
+
+// ignore: must_be_immutable
 class Perfil extends StatefulWidget {
+  List list;
+  int index;
+  int id;
+
+  final prefs = new PreferenciasUsuarios();
+
+  //Hago el constructo y le paso esos parametros
+  Perfil({this.index, this.list, this.id});
+
   @override
   _PerfilState createState() => _PerfilState();
 }
 
 class _PerfilState extends State<Perfil> {
-  @override
-  void initState() {
-    super.initState();
-
-    SystemChrome.setEnabledSystemUIOverlays([]);
-  }
+  //inicializar el shared_preferences
+  final prefs = new PreferenciasUsuarios();
+  Crud crud = new Crud();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Perfil",
-      home: ProfilePage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+    return new Scaffold(
+        appBar: AppBar(
+          title: new AutoSizeText("Perfil " + prefs.nombreUsuario),
 
-class ProfilePage extends StatelessWidget {
-  TextStyle _style() {
-    return TextStyle(fontWeight: FontWeight.bold);
+          //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
+          backgroundColor:
+              (prefs.colorSecundario) ? Colors.black : Colors.green,
+        ),
+        drawer: MenuPrincipal(),
+        body: itemm());
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AutoSizeText("Nombre"),
-            SizedBox(
-              height: 4,
-            ),
-            AutoSizeText(
-              "Startogoejemplo",
-              style: _style(),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            AutoSizeText(
-              "Email",
-              style: _style(),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            AutoSizeText("Startogoejemplo@gmail.com"),
-            SizedBox(
-              height: 16,
-            ),
-            AutoSizeText(
-              "Location",
-              style: _style(),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            AutoSizeText("New York, USA"),
-            SizedBox(
-              height: 16,
-            ),
-            AutoSizeText(
-              "Language",
-              style: _style(),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            AutoSizeText("English, French"),
-            SizedBox(
-              height: 16,
-            ),
-            AutoSizeText(
-              "Occupation",
-              style: _style(),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            AutoSizeText("Employee"),
-            SizedBox(
-              height: 16,
-            ),
-            Divider(
-              color: Colors.grey,
-            )
-          ],
+//cuerpo del widget
+  Widget itemm() {
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: 2.0, vertical: 16.0),
+      //para que la imagen tome todo el ancho posible del dispositivo
+
+      child: new Card(
+        child: new Center(
+          child: FutureBuilder<dynamic>(
+              builder: (context, pedidoRequest) {
+                //    print("mario prueba " + pedidoRequest.data.toString());
+                if (pedidoRequest.hasData) {
+                  print("mario" + pedidoRequest.data.toString());
+                  var pedidoData = pedidoRequest.data;
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Container(
+                                    height: 250.0,
+                                    color: Colors.white,
+                                    child: new Column(
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 20.0),
+                                          child: new Stack(
+                                              fit: StackFit.loose,
+                                              children: <Widget>[
+                                                new Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    new Container(
+                                                        width: 140.0,
+                                                        height: 140.0,
+                                                        decoration:
+                                                            new BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          image:
+                                                              new DecorationImage(
+                                                            image: new ExactAssetImage(
+                                                                'assets/apk1.png'),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 90.0,
+                                                        right: 100.0),
+                                                    child: new Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: <Widget>[
+                                                        new CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.red,
+                                                          radius: 25.0,
+                                                          child: new Icon(
+                                                            Icons.camera_alt,
+                                                            color: Colors.white,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )),
+                                              ]),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  new Text(
+                                    'Informacion Personal',
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              new Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[],
+                              )
+                            ],
+                          )),
+                      //========================inicio=================
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Nombre',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Apellido',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Nombres..."),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Apellido..."),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      //===================fin=================================
+
+                      //========================inicio=================
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Telefono',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'ID',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Telefono..."),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextField(
+                                  decoration:
+                                      const InputDecoration(hintText: "ID..."),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      //===================fin=================================
+
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Pais',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Estado',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Pais..."),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Estado..."),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      //_________________________________________
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 25.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'Ciudad',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  child: new Text(
+                                    'State',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextField(
+                                    decoration: const InputDecoration(
+                                        hintText: "Ciudad..."),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextField(
+                                  decoration: const InputDecoration(
+                                      hintText: "Enter State"),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+                      //===========================================
+                      _getActionButtons(),
+                    ],
+                  );
+                }
+                return CircularProgressIndicator();
+              },
+              future: crud.mostrarPerfil(int.parse(prefs.idUsuarioo))),
         ),
       ),
     );
   }
-}
 
-final String url = "https://www.startogoweb.com/tienda/logoapp.png";
-
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  @override
-  Size get preferredSize => Size(double.infinity, 320);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipPath(
-      clipper: MyClipper(),
-      child: Container(
-        padding: EdgeInsets.only(top: 4),
-        decoration: BoxDecoration(color: Colors.green, boxShadow: [
-          BoxShadow(color: Colors.red, blurRadius: 20, offset: Offset(0, 0))
-        ]),
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                ),
-                AutoSizeText(
-                  "Perfil Drive",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.add_a_photo,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )
-              ],
+  Widget _getActionButtons() {
+    return Padding(
+      padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
+      child: new Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: Container(
+                  child: new RaisedButton(
+                child: new Text("Actualizar"),
+                textColor: Colors.white,
+                color: Colors.green,
+                onPressed: () {},
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0)),
+              )),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.cover, image: NetworkImage(url))),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    AutoSizeText(
-                      "Startogo",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    )
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    AutoSizeText(
-                      "Pendientes",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      "0",
-                      style: TextStyle(fontSize: 26, color: Colors.white),
-                    )
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    AutoSizeText(
-                      "Entregado",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    AutoSizeText(
-                      "0",
-                      style: TextStyle(fontSize: 26, color: Colors.white),
-                    )
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    AutoSizeText(
-                      "Hoy",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    AutoSizeText(
-                      "0",
-                      style: TextStyle(fontSize: 26, color: Colors.white),
-                    )
-                  ],
-                ),
-              ],
+            flex: 2,
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 10.0),
+              child: Container(
+                  child: new RaisedButton(
+                child: new Text("Cancelar"),
+                textColor: Colors.white,
+                color: Colors.red,
+                onPressed: () {},
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(20.0)),
+              )),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                //      Column(
-                //       children: <Widget>[
-                //          Text(
-                //          "Savings",
-                //         style: TextStyle(color: Colors.white),
-                //      ),
-                //        Text(
-                //         "20K",
-                //        style: TextStyle(color: Colors.white, fontSize: 24),
-                //     )
-                //      ],
-                //    ),
-                SizedBox(
-                  width: 32,
-                ),
-                //  Column(
-                //     children: <Widget>[
-                //    Text(
-                //      "July Goals",
-                //      style: TextStyle(color: Colors.white),
-                //    ),
-                //     Text("50K",
-                //          style: TextStyle(color: Colors.white, fontSize: 24))
-                //    ],
-                //  ),
-                SizedBox(
-                  width: 16,
-                )
-              ],
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: () {
-                  print("//TODO: button dd");
-                },
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 24, 16, 0),
-                  child: Transform.rotate(
-                    angle: (math.pi * 0.05),
-                    child: Container(
-                      width: 110,
-                      height: 32,
-                      child: Center(
-                        child: AutoSizeText("Editar Perfil"),
-                      ),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(16)),
-                          boxShadow: [
-                            BoxShadow(color: Colors.black12, blurRadius: 20)
-                          ]),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+            flex: 2,
+          ),
+        ],
       ),
     );
-  }
-}
-
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path p = Path();
-
-    p.lineTo(0, size.height - 70);
-    p.lineTo(size.width, size.height);
-
-    p.lineTo(size.width, 0);
-
-    p.close();
-
-    return p;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return true;
   }
 }

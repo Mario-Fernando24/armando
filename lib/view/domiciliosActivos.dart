@@ -21,7 +21,7 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   Future<List> getDomiciliarioActivos() async {
     //instancio todos los productos
     final response =
-        await http.get("https://startogoweb.com/api/mostrarDomiActivo");
+        await http.get("http://192.168.0.11:8000/api/mostrarDomiActivo");
     //lo retornamos en un json
     return json.decode(response.body);
   }

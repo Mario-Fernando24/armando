@@ -29,7 +29,7 @@ class PreferenciasUsuarios {
 
   get nombreUsuario {
     //el ??1 es que si no existe el genero que sea igual a 1
-    return prefs.getString('name') ?? 'm';
+    return prefs.getString('name') ?? 'n';
   }
 
   set nombreUsuario(String value) {
@@ -46,7 +46,7 @@ class PreferenciasUsuarios {
   }
 
   get correoUsuario {
-    return prefs.getString('email') ?? 'm';
+    return prefs.getString('email') ?? 'e';
   }
 
   set correoUsuario(String value) {

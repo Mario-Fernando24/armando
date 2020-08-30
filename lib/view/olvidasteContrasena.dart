@@ -34,6 +34,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
       //final del color scafoll
       debugShowCheckedModeBanner: false,
       title: 'Olvidaste tu contraseña',
+
       home: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(

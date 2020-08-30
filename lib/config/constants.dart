@@ -1,1 +1,1 @@
-final BASE_ENDPOINT = "https://startogoweb.com";
+final BASE_ENDPOINT = "http://192.168.0.11:8000";

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 
-import 'menuLateral/menuprincial.dart';
-
 // ignore: must_be_immutable
 class DetallePedido extends StatefulWidget {
   List list;
@@ -27,13 +25,12 @@ class _DetallePedidoState extends State<DetallePedido> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          title: new AutoSizeText("Detalle"),
+          title: new AutoSizeText("Detalle del pedido"),
 
           //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
           backgroundColor:
               (prefs.colorSecundario) ? Colors.black : Colors.green,
         ),
-        drawer: MenuPrincipal(),
         body: itemm());
   }
 
@@ -47,16 +44,29 @@ class _DetallePedidoState extends State<DetallePedido> {
         child: new Center(
           child: FutureBuilder<dynamic>(
               builder: (context, pedidoRequest) {
-                print("Builder " + pedidoRequest.hasData.toString());
+                //  print("Builder " + pedidoRequest.data.toString());
                 if (pedidoRequest.hasData) {
                   var pedidoData = pedidoRequest.data;
                   return Column(
                     children: <Widget>[
+                      _logom(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           AutoSizeText(
-                            "#: ${pedidoData['cabezapedido']['id']}",
+                            "#${pedidoData['cabezapedido']['id']}",
+                            style:
+                                TextStyle(fontSize: 16.0, color: Colors.black),
+                          ),
+                          AutoSizeText(
+                            "${pedidoData['cabezapedido']['nombre_tienda']}",
+                            style: TextStyle(
+                                fontSize: 15.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          AutoSizeText(
+                            "Cliente ${pedidoData['cabezapedido']['nombrecli']}",
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
@@ -90,6 +100,13 @@ class _DetallePedidoState extends State<DetallePedido> {
                             style:
                                 TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
+                          AutoSizeText(
+                            "${pedidoData['cabezapedido']['observacion_domicilio']}",
+                            style: TextStyle(
+                                fontSize: 15.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(
                             height: 5.0,
                           ),
@@ -99,21 +116,57 @@ class _DetallePedidoState extends State<DetallePedido> {
                           sortColumnIndex: 2,
                           sortAscending: false,
                           columns: [
-                            DataColumn(label: Text("negocio")),
-                            DataColumn(label: Text("producto")),
-                            DataColumn(label: Text("cantidad"), numeric: true),
-                            DataColumn(label: Text("p venta")),
-                            DataColumn(label: Text("subtotal")),
-                            DataColumn(label: Text("observacion")),
+                            //   DataColumn(label: Text("negocio")),
+                            DataColumn(
+                                label: Text(
+                              "producto",
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                            DataColumn(
+                                label: Text(
+                                  "cantidad",
+                                  style: TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                numeric: true),
+                            DataColumn(
+                                label: Text(
+                              "p venta",
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                            DataColumn(
+                                label: Text(
+                              "subtotal",
+                              style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                            DataColumn(
+                                label: Text(
+                              "observacion",
+                              style: TextStyle(
+                                  fontSize: 10.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )),
                           ],
                           rows: pedidoData['detallepedido']
                               .map<DataRow>((detalle) {
                             return DataRow(selected: true, cells: [
                               //, showEditIcon: true
-                              DataCell(Text("${detalle['nombre_tienda']}")),
+                              //     DataCell(Text("${detalle['nombre_tienda']}")),
                               DataCell(Text("${detalle['nombre']}")),
                               DataCell(Text("${detalle['cantidad']}")),
-                              DataCell(Text("${detalle['venta']}")),
+                              DataCell(Text("${detalle['precio_venta']}")),
                               DataCell(Text("${detalle['subtotal']}")),
                               DataCell(Text("${detalle['observacion']}")),
                             ]);
@@ -124,24 +177,28 @@ class _DetallePedidoState extends State<DetallePedido> {
                           new Padding(
                             padding: const EdgeInsets.only(top: 30.0),
                           ),
-                          new AutoSizeText(
-                            "Subtotal: ${pedidoData['cabezapedido']['subtotalpedidoido']}",
-                            style: new TextStyle(fontSize: 15.0),
+                          AutoSizeText(
+                            "\$ Subtotal: ${pedidoData['cabezapedido']['subtotalpedido']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Impuesto: ${pedidoData['cabezapedido']['impuesto']}",
-                            style: new TextStyle(fontSize: 15.0),
+                            "\$ Impuesto: ${pedidoData['cabezapedido']['impuesto']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Propina: ${pedidoData['cabezapedido']['ValorPropina']}",
-                            style: new TextStyle(fontSize: 15.0),
+                            "\$ Propina: ${pedidoData['cabezapedido']['ValorPropina']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "Total: ${pedidoData['cabezapedido']['totalcobrar']}",
-                            style: new TextStyle(fontSize: 15.0),
+                            "\$ Total: ${pedidoData['cabezapedido']['totalcobrar']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
                           Divider(),
                           new Padding(
@@ -157,6 +214,13 @@ class _DetallePedidoState extends State<DetallePedido> {
               future: crud.getDetallePedido(this.widget.id)),
         ),
       ),
+    );
+  }
+
+  Widget _logom() {
+    return Image(
+      image: AssetImage('assets/apk1.png'),
+      height: 100.0,
     );
   }
 }

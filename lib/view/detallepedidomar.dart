@@ -115,7 +115,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     size: 50.0,
                   ),
                   new Text(
-                    "Startogo Domiciliario",
+                    "Startogo Driver",
                     style: new TextStyle(
                         fontSize: 25.0,
                         color: Colors.red,
@@ -159,7 +159,12 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                         color: Colors.green,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(90.0)),
-                        onPressed: () => confirm(),
+                        onPressed: () {
+                          Navigator.of(context).push(new MaterialPageRoute(
+                              builder: (BuildContext context) => DetallePedido(
+                                  id: int.parse(
+                                      widget.list[widget.index]['id']))));
+                        },
                       ),
                       VerticalDivider(),
                       new RaisedButton(
