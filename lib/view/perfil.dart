@@ -71,7 +71,7 @@ class _PerfilState extends State<Perfil> {
               builder: (context, pedidoRequest) {
                 //    print("mario prueba " + pedidoRequest.data.toString());
                 if (pedidoRequest.hasData) {
-                  print("mario" + pedidoRequest.data.toString());
+                  //   print("mario" + pedidoRequest.data.toString());
 
                   var pedidoData = pedidoRequest.data;
 
@@ -402,6 +402,7 @@ class _PerfilState extends State<Perfil> {
   }
 
   Widget _getActionButtons() {
+    var toast = Toast;
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
       child: new Row(
@@ -428,8 +429,11 @@ class _PerfilState extends State<Perfil> {
                       _ciudadDomi.text.trim(),
                       _generoDomi.text.trim());
                   Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => new MainPage(),
+                    builder: (BuildContext context) => new Perfil(),
                   ));
+
+                  Toast.show("Actualizacion exitosa", context,
+                      duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                 },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(20.0)),

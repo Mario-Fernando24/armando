@@ -77,23 +77,32 @@ class Crud {
   //funcion para update el producto  "editar"
   void actualizarDatosDomi(
       String id,
-      String nombre,
-      String apellido,
-      String telefono,
-      String documento,
-      String pais,
-      String estado,
-      String ciudad,
-      String sexo) async {
-    apiService.post('products/$id', {
-      "nombre": "$nombre",
-      "apellido": "$apellido",
-      "telefono": "$telefono",
-      "documento": "$documento",
-      "pais": "$pais",
-      "estado": "$estado",
-      "ciudad": "$ciudad",
-      "sexo": "$sexo"
+      String nombreDomi,
+      String apellidoDomi,
+      String numeroDomi,
+      String num_documento,
+      String paisDomi,
+      String estadoDomi,
+      String ciudadDomi,
+      String generoDomi) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    String myUrl = "$BASE_ENDPOINT/api/Actualizar/$id";
+
+    http.put(myUrl, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    }, body: {
+      "nombreDomi": "$nombreDomi",
+      "apellidoDomi": "$apellidoDomi",
+      "numeroDomi": "$numeroDomi",
+      "num_documento": "$num_documento",
+      "paisDomi": "$paisDomi",
+      "estadoDomi": "$estadoDomi",
+      "ciudadDomi": "$ciudadDomi",
+      "generoDomi": "$generoDomi"
     }).then((response) {
       print('Responses status : ${response.statusCode}');
       print('data : ${response.body}');
