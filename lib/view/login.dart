@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:startogodomiciliario/config/constants.dart';
 import 'package:startogodomiciliario/view/olvidasteContrasena.dart';
 import 'package:startogodomiciliario/view/registrarme.dart';
 import 'package:toast/toast.dart';
@@ -20,6 +21,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   //declaramos de tipo booleano si esta cargando
   bool _isLoading = false;
+
+  final String URL_API = '$BASE_ENDPOINT/api';
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +56,7 @@ class _LoginPageState extends State<LoginPage> {
     Map data = {'email': email, 'password': pass};
     var jsonResponse = null;
 
-    var response =
-        await http.post("http://192.168.0.11:8000/api/login", body: data);
+    var response = await http.post("$URL_API/login", body: data);
     print(response.statusCode);
     if (response.statusCode == 401) {
       Toast.show("correo o contraseñas no validos", context,

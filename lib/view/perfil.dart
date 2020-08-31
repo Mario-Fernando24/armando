@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
+import 'package:startogodomiciliario/main.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
+import 'package:toast/toast.dart';
 
 import 'menuLateral/menuprincial.dart';
 
@@ -24,6 +26,24 @@ class _PerfilState extends State<Perfil> {
   //inicializar el shared_preferences
   final prefs = new PreferenciasUsuarios();
   Crud crud = new Crud();
+
+  TextEditingController _nombreController = new TextEditingController();
+  TextEditingController _apellidoController = new TextEditingController();
+  TextEditingController _numerotelefono = new TextEditingController();
+  TextEditingController _num_documento = new TextEditingController();
+  TextEditingController _paisDomi = new TextEditingController();
+  TextEditingController _estadoDomi = new TextEditingController();
+  TextEditingController _ciudadDomi = new TextEditingController();
+
+  TextEditingController _fotoDomi = new TextEditingController();
+
+  TextEditingController _generoDomi = new TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    itemm();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +72,35 @@ class _PerfilState extends State<Perfil> {
                 //    print("mario prueba " + pedidoRequest.data.toString());
                 if (pedidoRequest.hasData) {
                   print("mario" + pedidoRequest.data.toString());
+
                   var pedidoData = pedidoRequest.data;
+
+                  _nombreController = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['nombreDomi']}");
+
+                  _apellidoController = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['apellidoDomi']}");
+
+                  _numerotelefono = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['numeroDomi']}");
+
+                  _num_documento = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['num_documento']}");
+
+                  _paisDomi = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['paisDomi']}");
+
+                  _estadoDomi = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['estadoDomi']}");
+
+                  _ciudadDomi = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['ciudadDomi']}");
+
+                  _fotoDomi = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['fotoDomi']}");
+
+                  _generoDomi = new TextEditingController(
+                      text: "${pedidoData['perfilDomi']['generoDomi']}");
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +175,7 @@ class _PerfilState extends State<Perfil> {
                                     ),
                                   ),
                                   new Text(
-                                    'Informacion Personal',
+                                    'Informacion Driver',
                                     style: TextStyle(
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.bold),
@@ -142,37 +190,7 @@ class _PerfilState extends State<Perfil> {
                             ],
                           )),
                       //========================inicio=================
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Nombre',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Apellido',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
+
                       Padding(
                           padding: EdgeInsets.only(
                               left: 25.0, right: 25.0, top: 2.0),
@@ -183,17 +201,186 @@ class _PerfilState extends State<Perfil> {
                               Flexible(
                                 child: Padding(
                                   padding: EdgeInsets.only(right: 10.0),
-                                  child: new TextField(
-                                    decoration: const InputDecoration(
-                                        hintText: "Nombres..."),
+                                  child: new TextFormField(
+                                    controller: _nombreController,
+                                    /*Presta atención a la siguiente línea:*/
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Nombre';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: 'Nombre',
+                                      labelText: "Nombre",
+                                    ),
                                   ),
                                 ),
                                 flex: 2,
                               ),
                               Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Apellido..."),
+                                child: new TextFormField(
+                                  /*Presta atención a la siguiente línea:*/
+                                  keyboardType: TextInputType.number,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Apellido';
+                                    }
+                                    return null;
+                                  },
+                                  controller: _apellidoController,
+                                  decoration: InputDecoration(
+                                    hintText: 'Apellido',
+                                    labelText: "Apellido",
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextFormField(
+                                    controller: _numerotelefono,
+                                    /*Presta atención a la siguiente línea:*/
+                                    keyboardType: TextInputType.number,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Telefono';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: 'Telefono',
+                                      labelText: "Telefono",
+                                    ),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextFormField(
+                                  /*Presta atención a la siguiente línea:*/
+                                  keyboardType: TextInputType.number,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return '# Documento';
+                                    }
+                                    return null;
+                                  },
+                                  controller: _num_documento,
+                                  decoration: InputDecoration(
+                                    hintText: '# Documento',
+                                    labelText: "# Documento",
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextFormField(
+                                    controller: _paisDomi,
+                                    /*Presta atención a la siguiente línea:*/
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Pais';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: 'Pais',
+                                      labelText: "Pais",
+                                    ),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextFormField(
+                                  /*Presta atención a la siguiente línea:*/
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Estado';
+                                    }
+                                    return null;
+                                  },
+                                  controller: _estadoDomi,
+                                  decoration: InputDecoration(
+                                    hintText: 'Estado',
+                                    labelText: "Estado",
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                            ],
+                          )),
+
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 25.0, right: 25.0, top: 2.0),
+                          child: new Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Flexible(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: 10.0),
+                                  child: new TextFormField(
+                                    controller: _ciudadDomi,
+                                    /*Presta atención a la siguiente línea:*/
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Ciudad';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: 'Ciudad',
+                                      labelText: "Ciudad",
+                                    ),
+                                  ),
+                                ),
+                                flex: 2,
+                              ),
+                              Flexible(
+                                child: new TextFormField(
+                                  /*Presta atención a la siguiente línea:*/
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Sexo';
+                                    }
+                                    return null;
+                                  },
+                                  controller: _generoDomi,
+                                  decoration: InputDecoration(
+                                    hintText: 'Sexo',
+                                    labelText: "Sexo",
+                                  ),
                                 ),
                                 flex: 2,
                               ),
@@ -202,184 +389,6 @@ class _PerfilState extends State<Perfil> {
 
                       //===================fin=================================
 
-                      //========================inicio=================
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Telefono',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'ID',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 10.0),
-                                  child: new TextField(
-                                    decoration: const InputDecoration(
-                                        hintText: "Telefono..."),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Flexible(
-                                child: new TextField(
-                                  decoration:
-                                      const InputDecoration(hintText: "ID..."),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-
-                      //===================fin=================================
-
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Pais',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Estado',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 10.0),
-                                  child: new TextField(
-                                    decoration: const InputDecoration(
-                                        hintText: "Pais..."),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Estado..."),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-
-                      //_________________________________________
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Ciudad',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'State',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 10.0),
-                                  child: new TextField(
-                                    decoration: const InputDecoration(
-                                        hintText: "Ciudad..."),
-                                  ),
-                                ),
-                                flex: 2,
-                              ),
-                              Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                      hintText: "Enter State"),
-                                ),
-                                flex: 2,
-                              ),
-                            ],
-                          )),
-                      //===========================================
                       _getActionButtons(),
                     ],
                   );
@@ -407,22 +416,21 @@ class _PerfilState extends State<Perfil> {
                 child: new Text("Actualizar"),
                 textColor: Colors.white,
                 color: Colors.green,
-                onPressed: () {},
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0)),
-              )),
-            ),
-            flex: 2,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: 10.0),
-              child: Container(
-                  child: new RaisedButton(
-                child: new Text("Cancelar"),
-                textColor: Colors.white,
-                color: Colors.red,
-                onPressed: () {},
+                onPressed: () {
+                  crud.actualizarDatosDomi(
+                      prefs.idUsuarioo,
+                      _nombreController.text.trim(),
+                      _apellidoController.text.trim(),
+                      _numerotelefono.text.trim(),
+                      _num_documento.text.trim(),
+                      _paisDomi.text.trim(),
+                      _estadoDomi.text.trim(),
+                      _ciudadDomi.text.trim(),
+                      _generoDomi.text.trim());
+                  Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new MainPage(),
+                  ));
+                },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(20.0)),
               )),

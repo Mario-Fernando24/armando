@@ -2,14 +2,16 @@ import 'dart:core';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:startogodomiciliario/config/constants.dart';
 import 'dart:convert';
 
 import 'package:startogodomiciliario/helpers/apiService.dart';
 
 class Crud {
+  final String URL_API = '$BASE_ENDPOINT/api';
   //hacemos unas exportaciones el http
-  String serverUrl = "https://startogoweb.com/api/";
-  String serverUrlProducto = "https://startogoweb.com/api/mostrarDomiActivo";
+  //String serverUrl = "https://startogoweb.com/api/";
+  //String serverUrlProducto = "https://startogoweb.com/api/mostrarDomiActivo";
 
   var status;
   var token;
@@ -18,7 +20,7 @@ class Crud {
 
   //creamos la funcion para el login
   loginData(String email, String password) async {
-    String myUrl = "$serverUrl/login";
+    String myUrl = "$URL_API/login";
     final response = await http.post(myUrl,
         headers: {'accept': 'application/json'},
         body: {"email": "$email", "password": "$password"});
@@ -42,7 +44,7 @@ class Crud {
     final value = prefs.get(key) ?? 0;
 
     //string myUrl= $serverUrl/api
-    String myUrl = "https://startogoweb.com/api/register";
+    String myUrl = "$URL_API/api/register";
     final response = await http.post(myUrl, headers: {
       'accept': 'application/json'
     }, body: {
@@ -63,34 +65,35 @@ class Crud {
 
   //metodo para restablecer contraseña
   void olvidasteContrasena(String _correoController) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
-
     //string myUrl= $serverUrl/api
-    String myUrl = "https://startogoweb.com/api/password/email";
+    String myUrl = "$URL_API/password/email";
     final response = await http.post(myUrl, headers: {
       'accept': 'application/json'
     }, body: {
       "email": "$_correoController",
     });
-
-    // status = response.body.contains('error');
-    //  var data = json.decode(response.body);
-    //  if (status) {
-    //   print('data : ${data["error"]}');
-    // } else {
-    //  print('data : ${data["token"]}');
-    // _save(data["token"]);
-    // }
   }
 
   //funcion para update el producto  "editar"
-  void editarData(String id, String nombre, String precio, String stock) async {
+  void actualizarDatosDomi(
+      String id,
+      String nombre,
+      String apellido,
+      String telefono,
+      String documento,
+      String pais,
+      String estado,
+      String ciudad,
+      String sexo) async {
     apiService.post('products/$id', {
-      "name": "$nombre",
-      "precio": "$precio",
-      "stock": "$stock"
+      "nombre": "$nombre",
+      "apellido": "$apellido",
+      "telefono": "$telefono",
+      "documento": "$documento",
+      "pais": "$pais",
+      "estado": "$estado",
+      "ciudad": "$ciudad",
+      "sexo": "$sexo"
     }).then((response) {
       print('Responses status : ${response.statusCode}');
       print('data : ${response.body}');

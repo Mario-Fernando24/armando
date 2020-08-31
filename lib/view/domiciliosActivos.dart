@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:startogodomiciliario/config/constants.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 import 'package:startogodomiciliario/view/detallepedidomar.dart';
 
@@ -18,10 +19,11 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   //listar toda la informacion de los productos en unas tarjetas
   List data;
 
+  final String URL_API = '$BASE_ENDPOINT/api';
+
   Future<List> getDomiciliarioActivos() async {
     //instancio todos los productos
-    final response =
-        await http.get("http://192.168.0.11:8000/api/mostrarDomiActivo");
+    final response = await http.get("$URL_API/mostrarDomiActivo");
     //lo retornamos en un json
     return json.decode(response.body);
   }
