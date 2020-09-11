@@ -19,7 +19,7 @@ class Crud {
   ApiService apiService = new ApiService();
 
   //creamos la funcion para el login
-  loginData(String email, String password) async {
+  loginData(String email, String password) async{
     String myUrl = "$URL_API/login";
     final response = await http.post(myUrl,
         headers: {'accept': 'application/json'},
@@ -84,7 +84,7 @@ class Crud {
       String paisDomi,
       String estadoDomi,
       String ciudadDomi,
-      String generoDomi) async {
+      String generoDomi) async{
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;
@@ -145,13 +145,13 @@ class Crud {
     return json.decode(response.body);
   }
 
-//metodo en el cual mando el id por parametro del pedido que quiero que se muestre
+  //metodo en el cual mando el id por parametro del pedido que quiero que se muestre
   Future<dynamic> mostrarPerfil(int id) async {
     var response = await apiService.get('MostrarPerfil/$id');
     return json.decode(response.body);
   }
-  //metodo para traerme los datos del domiciliario
 
+  //metodo para traerme los datos del domiciliario
   _save(String token) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
@@ -179,4 +179,5 @@ class Crud {
     final valuee = prefs.get(keyy) ?? '';
     print('readd: $valuee');
   }
+  
 }

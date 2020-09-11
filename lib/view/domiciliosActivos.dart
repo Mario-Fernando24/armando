@@ -113,7 +113,7 @@ class ItemList extends StatelessWidget {
                               list[i]['direccion'].toString() +
                               "\n" +
                               "\$ " +
-                              list[i]['total'].toString() +
+                              list[i]['totalcobrar'].toString() +
                               "\n" +
                               list[i]['observacion_domicilio'].toString() +
                               "\n" +

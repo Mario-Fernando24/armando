@@ -3,9 +3,13 @@ import 'package:fancy_dialog/FancyAnimation.dart';
 import 'package:fancy_dialog/FancyGif.dart';
 import 'package:fancy_dialog/FancyTheme.dart';
 import 'package:fancy_dialog/fancy_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
+import 'package:startogodomiciliario/view/registrarme.dart';
 import 'package:toast/toast.dart';
+
+import 'login.dart';
 
 class OlvidarContrasena extends StatefulWidget {
   //le pasamos como parametro como lo es el key
@@ -90,7 +94,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     elevation: 6.0,
-                    color: Colors.red,
+                    color: Colors.green[900],
                     child: AutoSizeText("Recuperar mi cuenta"),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
@@ -154,6 +158,50 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                     },
                   ),
                 ),
+
+                Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CupertinoButton(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'sans',
+                              color: Colors.black,
+                            ),
+                          ),
+                          onPressed: () =>
+                              Navigator.of(context).push(new MaterialPageRoute(
+                            //LLAMO A LA CLASE LISTAR PRODUCTO
+
+                            builder: (BuildContext context) => LoginPage(),
+                          )),
+                        ),
+                      ),
+                      Expanded(
+                        child: CupertinoButton(
+                          child: Text(
+                            "Registrarme",
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontFamily: 'sans',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () =>
+                              Navigator.of(context).push(new MaterialPageRoute(
+                            //LLAMO A LA CLASE LISTAR PRODUCTO
+                            builder: (BuildContext context) =>
+                                RegistrarDomiciliario(),
+                          )),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             )),
       ),
@@ -163,7 +211,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
   Widget _imagenmaa() {
     return Image(
       image: AssetImage('assets/apk1.png'),
-      height: 250.0,
+      height: 230.0,
     );
   }
 }

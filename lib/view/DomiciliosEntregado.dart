@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:startogodomiciliario/config/constants.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 
 import 'menuLateral/menuprincial.dart';
@@ -17,10 +18,11 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   //listar toda la informacion de los productos en unas tarjetas
   List data;
 
+  final String URL_API = '$BASE_ENDPOINT/api';
+
   Future<List> getDomiciliarioEntregados() async {
     //instancio todos los productos
-    final response = await http
-        .get("https://startogoweb.com/api/mostrarDomiciliosEntregado");
+    final response = await http.get("$URL_API /mostrarDomiciliosEntregado");
     //lo retornamos en un json
     return json.decode(response.body);
   }

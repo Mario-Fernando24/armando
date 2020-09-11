@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/config/constants.dart';
 import 'package:startogodomiciliario/view/olvidasteContrasena.dart';
 import 'package:startogodomiciliario/view/registrarme.dart';
+import 'package:startogodomiciliario/view/utilities/screenUtilCalc.dart';
 import 'package:toast/toast.dart';
 
 import '../main.dart';
@@ -33,16 +34,49 @@ class _LoginPageState extends State<LoginPage> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [Colors.white, Colors.green[500], Colors.black],
-              begin: Alignment.centerLeft,
+              begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
         child: _isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(
+                child: Column(
+                children: [
+                  Text("Iniciando Sesión..."),
+                  CircularProgressIndicator(
+                      valueColor:
+                          new AlwaysStoppedAnimation<Color>(Colors.white)),
+                ],
+              ))
             : ListView(
                 children: <Widget>[
                   _imagenLogin(),
-                  textSection(),
-                  buttonSection(),
+                  Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: calcFromW(context, 0.05)),
+                      child: Card(
+                          child: Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 5, left: 20, right: 20, top: 8),
+                        child: Column(
+                          children: [
+                            Center(
+                                child: Text(
+                              "Iniciar Sesión Driver",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: calcFromW(context, 0.065)),
+                            )),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            textSection(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            buttonSection(),
+                          ],
+                        ),
+                      ))),
                 ],
               ),
       ),
@@ -130,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                 "Registrarme",
                 style: TextStyle(
                     fontSize: 18.0,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'sans'),
               ),
@@ -148,7 +182,10 @@ class _LoginPageState extends State<LoginPage> {
               child: AutoSizeText(
                 "Olvideste tu contraseña",
                 style: TextStyle(
-                    fontSize: 13.0, color: Colors.white, fontFamily: 'sans'),
+                    fontSize: 13.0,
+                    color: Colors.black,
+                    fontFamily: 'sans',
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
                 //LLAMO A LA CLASE LISTAR PRODUCTO
@@ -204,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _imagenLogin() {
     return Image(
       image: AssetImage('assets/apk1.png'),
-      height: 300.0,
+      height: calcFromH(context, 0.20),
     );
   }
 }

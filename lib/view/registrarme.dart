@@ -3,9 +3,13 @@ import 'package:fancy_dialog/FancyAnimation.dart';
 import 'package:fancy_dialog/FancyGif.dart';
 import 'package:fancy_dialog/FancyTheme.dart';
 import 'package:fancy_dialog/fancy_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:toast/toast.dart';
+
+import 'login.dart';
+import 'olvidasteContrasena.dart';
 
 class RegistrarDomiciliario extends StatefulWidget {
   //le pasamos como parametro como lo es el key
@@ -138,7 +142,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     elevation: 10.0,
-                    color: Colors.red,
+                    color: Colors.green[900],
                     child: AutoSizeText("Registrarse"),
                     onPressed: () => {
                       if (!RegExp(
@@ -213,6 +217,50 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                     shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
+                  ),
+                ),
+
+                Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CupertinoButton(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'sans',
+                              color: Colors.white,
+                            ),
+                          ),
+                          onPressed: () =>
+                              Navigator.of(context).push(new MaterialPageRoute(
+                            //LLAMO A LA CLASE LISTAR PRODUCTO
+
+                            builder: (BuildContext context) => LoginPage(),
+                          )),
+                        ),
+                      ),
+                      Expanded(
+                        child: CupertinoButton(
+                          child: Text(
+                            "Olvide Mi contraseña",
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontFamily: 'sans',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () =>
+                              Navigator.of(context).push(new MaterialPageRoute(
+                            //LLAMO A LA CLASE LISTAR PRODUCTO
+                            builder: (BuildContext context) =>
+                                OlvidarContrasena(),
+                          )),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],

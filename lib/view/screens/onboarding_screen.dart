@@ -101,14 +101,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Center(
                               child: Image(
                                 image: AssetImage('assets/apk1.png'),
-                                height:
-                                    MediaQuery.of(context).size.width - 120.0,
-                                width:
-                                    MediaQuery.of(context).size.width - 120.0,
+                                height: 500.0,
+                                width: 500.0,
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            AutoSizeText('BienvenidoS a Startogo drive',
+                            AutoSizeText('BienvenidoS a Startogo driver',
                                 style: TextStyle(
                                     color: Colors.green[900],
                                     fontSize: 24.0,
@@ -131,9 +129,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           children: <Widget>[
                             Center(
                               child: Image(
-                                image: AssetImage('assets/apk2.png'),
-                                height: 500.0,
-                                width: 500.0,
+                                image: AssetImage('assets/drivers.png'),
+                                height: 660.0,
+                                width: 660.0,
                               ),
                             ),
                             SizedBox(height: 30.0),
