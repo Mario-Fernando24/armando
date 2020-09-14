@@ -98,7 +98,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
             fontWeight: FontWeight.bold,
           ),
         )),
-        drawer: MenuPrincipal(),
+        //  drawer: MenuPrincipal(),
         body: new Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20.0),
@@ -155,7 +155,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new RaisedButton(
-                        child: new Text("Detalles Pedido"),
+                        child: new Text("Detalles del  Pedido"),
                         color: Colors.green,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(90.0)),
@@ -167,13 +167,14 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                         },
                       ),
                       VerticalDivider(),
-                      new RaisedButton(
-                        child: new Text("entregar pedido"),
-                        color: Colors.blue,
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
-                        onPressed: () => confirmarentrega(),
-                      )
+                      if (widget.list[widget.index]['estado'] == 'camino')
+                        new RaisedButton(
+                          child: new Text("entregar del pedido"),
+                          color: Colors.blue,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0)),
+                          onPressed: () => confirmarentrega(),
+                        ),
                     ],
                   )
                 ],

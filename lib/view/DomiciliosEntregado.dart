@@ -22,8 +22,9 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
 
   Future<List> getDomiciliarioEntregados() async {
     //instancio todos los productos
-    final response = await http.get("$URL_API /mostrarDomiciliosEntregado");
+    final response = await http.get("$URL_API/mostrarDomiciliosEntregado");
     //lo retornamos en un json
+    print(response.body);
     return json.decode(response.body);
   }
 
@@ -38,7 +39,7 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Domicilio Entregados"),
+        title: new AutoSizeText("Historial de pedido"),
       ),
       drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(

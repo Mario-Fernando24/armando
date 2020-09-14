@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 import 'package:startogodomiciliario/view/DomiciliosEntregado.dart';
@@ -82,8 +83,15 @@ class MenuPrincipal extends StatelessWidget {
                   builder: (BuildContext context) => SettingPage()))),
           new Divider(),
           new ListTile(
-              title: new AutoSizeText("Salir"),
-              trailing: new Icon(Icons.close, color: Colors.red),
+              title: new AutoSizeText(
+                "Salir",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              trailing: new FaIcon(
+                FontAwesomeIcons.signOutAlt,
+                size: 30.0,
+                color: Colors.red,
+              ),
               onTap: () async {
                 //cierro session y elimino el token que esat guardadas en las preferencias de la apk
                 SharedPreferences preferences =

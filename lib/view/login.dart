@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
             child: CupertinoButton(
               padding: EdgeInsets.symmetric(vertical: 4),
               child: AutoSizeText(
-                "Olvideste tu contraseña",
+                "Olvidaste tu contraseña",
                 style: TextStyle(
                     fontSize: 13.0,
                     color: Colors.black,

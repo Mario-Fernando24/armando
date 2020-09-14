@@ -41,11 +41,11 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
       ),
       //final del color scafoll
       debugShowCheckedModeBanner: false,
-      title: 'Registro de Domiciliario.',
+      title: 'Registro de Driver.',
       home: Scaffold(
         appBar: AppBar(
           title: AutoSizeText(
-            'Registrar nuevo Domiciliario',
+            'Registrar nuevo Driver',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
@@ -60,7 +60,13 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
               padding: const EdgeInsets.only(
                   top: 6, left: 12.0, right: 12.0, bottom: 12.0),
               children: <Widget>[
+                new Padding(
+                  padding: new EdgeInsets.only(top: 15.0),
+                ),
                 _imagenmaa(),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20.0),
+                ),
                 //---nombre del producto
                 Container(
                     height: 50,
@@ -272,7 +278,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
   Widget _imagenmaa() {
     return Image(
       image: AssetImage('assets/apk1.png'),
-      height: 250.0,
+      height: 230.0,
     );
   }
 }

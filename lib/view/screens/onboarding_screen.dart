@@ -106,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            AutoSizeText('BienvenidoS a Startogo driver',
+                            AutoSizeText('Bienvenidos a Startogo Driver',
                                 style: TextStyle(
                                     color: Colors.green[900],
                                     fontSize: 24.0,

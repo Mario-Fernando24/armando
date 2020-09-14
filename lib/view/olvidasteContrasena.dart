@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:startogodomiciliario/view/registrarme.dart';
 import 'package:toast/toast.dart';
-
 import 'login.dart';
 
 class OlvidarContrasena extends StatefulWidget {
@@ -57,7 +56,13 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
               padding: const EdgeInsets.only(
                   top: 6, left: 12.0, right: 12.0, bottom: 12.0),
               children: <Widget>[
+                new Padding(
+                  padding: new EdgeInsets.only(top: 15.0),
+                ),
                 _imagenmaa(),
+                new Padding(
+                  padding: new EdgeInsets.only(top: 20.0),
+                ),
 
                 ListTile(
                   title: AutoSizeText('¿Olvidaste tu contraseña?',
@@ -176,7 +181,6 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                           onPressed: () =>
                               Navigator.of(context).push(new MaterialPageRoute(
                             //LLAMO A LA CLASE LISTAR PRODUCTO
-
                             builder: (BuildContext context) => LoginPage(),
                           )),
                         ),
