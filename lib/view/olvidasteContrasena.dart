@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fancy_dialog/FancyAnimation.dart';
 import 'package:fancy_dialog/FancyGif.dart';
 import 'package:fancy_dialog/FancyTheme.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 import 'package:startogodomiciliario/view/registrarme.dart';
+import 'package:startogodomiciliario/view/utilities/screenUtilCalc.dart';
 import 'package:toast/toast.dart';
 
 import 'login.dart';
@@ -23,7 +23,8 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
   //instanciamos nuestro controlador que es el crud
   Crud auth = new Crud();
   //declaramos de tipo booleano si esta cargando
-  //bool _isLoading = false;
+  bool _isLoading = false;
+  String email = '';
 
   final TextEditingController _correoController = new TextEditingController();
 
@@ -38,10 +39,9 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
       //final del color scafoll
       debugShowCheckedModeBanner: false,
       title: 'Olvidaste tu contraseña',
-
       home: Scaffold(
         appBar: AppBar(
-          title: AutoSizeText(
+          title: Text(
             'Olvidaste tu contraseña',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -50,7 +50,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: [Colors.white, Colors.green[900]],
-                  begin: Alignment.centerLeft,
+                  begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
             ),
             child: ListView(
@@ -58,152 +58,189 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                   top: 6, left: 12.0, right: 12.0, bottom: 12.0),
               children: <Widget>[
                 _imagenmaa(),
-
-                ListTile(
-                  title: AutoSizeText('¿Olvidaste tu contraseña?',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  subtitle: AutoSizeText(
-                    'Aquí puede recuperar fácilmente una nueva contraseña, le enviaremos un enlace a su correo electronico para que restablecer su cuenta,',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                new Padding(
-                  padding: new EdgeInsets.only(top: 20.0),
-                ),
-                //n
                 Container(
-                    height: 50,
-                    child: new TextField(
-                      controller: _correoController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
-                        labelText: 'Correo Electronico',
-                        hintText: 'Correo Electronico',
-                        suffixIcon: Icon(Icons.alternate_email),
-                        icon: Icon(Icons.email),
-                      ),
-                    )),
-
-                //boton
-
-                Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    elevation: 6.0,
-                    color: Colors.green[900],
-                    child: AutoSizeText("Recuperar mi cuenta"),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    onPressed: () => {
-                      if (_correoController.text == "")
-                        {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) => FancyDialog(
-                                    title: "Campos vacio",
-                                    descreption:
-                                        "Por favor Ingresar un correo electronico valido para recuperar su cuenta",
-                                    animationType: FancyAnimation.LEFT_RIGHT,
-                                    theme: FancyTheme.FANCY,
-                                    gifPath: FancyGif
-                                        .PLAY_MEDIA, //'./assets/walp.png',
-                                    okFun: () => {},
-                                  ))
-                        }
-                      else if (RegExp(
-                              r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-                          .hasMatch(_correoController.text))
-                        {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) => FancyDialog(
-                                    title: "Desea recuperar su cuenta",
-                                    descreption:
-                                        "le enviaremos un enlace a su correo electronico ${_correoController.text} para que restablesca su cuenta, si no lo encuentras aveces por accidente cae en la carpeta spam  ",
-                                    animationType: FancyAnimation.BOTTOM_TOP,
-                                    theme: FancyTheme.FANCY,
-                                    gifPath: FancyGif.CHECK_MAIL,
-                                    okFun: () => {
-                                      if (_correoController.text != "")
-                                        {
-                                          Toast.show("correo enviado con exito",
-                                              context,
-                                              duration: Toast.LENGTH_LONG,
-                                              gravity: Toast.BOTTOM),
-                                          auth.olvidasteContrasena(
-                                              _correoController.text.trim()),
-                                        }
-                                    },
-                                  ))
-                        }
-                      else
-                        {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) => FancyDialog(
-                                    title: "Error",
-                                    descreption:
-                                        "${_correoController.text} no es un correo valido, por favor ingrese un correo electronico valido",
-                                    animationType: FancyAnimation.BOTTOM_TOP,
-                                    theme: FancyTheme.FANCY,
-                                    gifPath: FancyGif
-                                        .PLAY_MEDIA, //'./assets/walp.png',
-                                    okFun: () => {},
-                                  ))
-                        }
-                    },
-                  ),
-                ),
-
-                Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: CupertinoButton(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'sans',
-                              color: Colors.black,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: calcFromW(context, 0.05)),
+                    child: Card(
+                        child: Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: 5, left: 20, right: 20, top: 8),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Restablecer contraseña",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: calcFromW(context, 0.065)),
                             ),
                           ),
-                          onPressed: () =>
-                              Navigator.of(context).push(new MaterialPageRoute(
-                            //LLAMO A LA CLASE LISTAR PRODUCTO
-
-                            builder: (BuildContext context) => LoginPage(),
-                          )),
-                        ),
-                      ),
-                      Expanded(
-                        child: CupertinoButton(
-                          child: Text(
-                            "Registrarme",
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                fontFamily: 'sans',
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                          Center(
+                            child: Text(
+                              "Aquí puede recuperar fácilmente una nueva contraseña, le enviaremos un enlace a su correo electronico para que restablezca su cuenta.",
+                              style: TextStyle(fontSize: 15.0),
+                            ),
                           ),
-                          onPressed: () =>
-                              Navigator.of(context).push(new MaterialPageRoute(
-                            //LLAMO A LA CLASE LISTAR PRODUCTO
-                            builder: (BuildContext context) =>
-                                RegistrarDomiciliario(),
-                          )),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          textSection(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          buttonSection(),
+                        ],
+                      ),
+                    ))),
               ],
             )),
+      ),
+    );
+  }
+
+  //declaramos una funcion segnIn que es la que se va a conectar con nuestra api de laravel
+  enviar(String email) async {
+    if (email.trim() == "") {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => FancyDialog(
+                title: "Campos vacio",
+                descreption:
+                    "Por favor Ingresar un correo electronico valido para recuperar su cuenta.",
+                animationType: FancyAnimation.LEFT_RIGHT,
+                theme: FancyTheme.FANCY,
+                gifPath: FancyGif.FUNNY_MAN, //'./assets/walp.png',
+                okFun: () => {},
+              ));
+    } else if (RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+        .hasMatch(email.trim())) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => FancyDialog(
+                title: "Desea recuperar su cuenta",
+                descreption:
+                    "le enviaremos un enlace a su correo electronico para que restablezca su cuenta  ${email.trim()}",
+                animationType: FancyAnimation.BOTTOM_TOP,
+                theme: FancyTheme.FANCY,
+                gifPath: FancyGif.CHECK_MAIL, //'./assets/walp.png',
+                okFun: () => {
+                  if (email.trim() != "")
+                    {
+                      auth.olvidasteContrasena(email.trim()),
+                      Toast.show(
+                          "Correo electronico enviado correctamente", context,
+                          duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM),
+                    }
+                },
+              ));
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => FancyDialog(
+                title: "Error",
+                descreption:
+                    "${email.trim()} no es un correo valido, por favor ingrese un correo electronico valido",
+                animationType: FancyAnimation.BOTTOM_TOP,
+                theme: FancyTheme.FANCY,
+                gifPath: FancyGif.PLAY_MEDIA, //'./assets/walp.png',
+                okFun: () => {},
+              ));
+    }
+  }
+
+  Container buttonSection() {
+    return Container(
+      alignment: Alignment.topCenter,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: <Widget>[
+          RaisedButton(
+            onPressed: email == ""
+                ? null
+                : () {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    enviar(email);
+                  },
+            elevation: 6.0,
+            color: Colors.green,
+            child: Text("Restablecer contraseña",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
+          ),
+          Padding(
+            padding: new EdgeInsets.only(top: 5.0),
+          ),
+          Container(
+            child: Row(
+              children: [
+                Expanded(
+                  child: CupertinoButton(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'sans'),
+                    ),
+                    onPressed: () =>
+                        Navigator.of(context).push(new MaterialPageRoute(
+                      //LLAMO A LA CLASE LISTAR PRODUCTO
+                      builder: (BuildContext context) => LoginPage(),
+                    )),
+                  ),
+                ),
+                Expanded(
+                  child: CupertinoButton(
+                    child: Text(
+                      "Registrarme",
+                      style: TextStyle(fontSize: 13.0, fontFamily: 'sans'),
+                    ),
+                    onPressed: () =>
+                        Navigator.of(context).push(new MaterialPageRoute(
+                      //LLAMO A LA CLASE LISTAR PRODUCTO
+                      builder: (BuildContext context) =>
+                          RegistrarDomiciliario(),
+                    )),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  final TextEditingController emailController = new TextEditingController();
+
+  Container textSection() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            controller: emailController,
+            onChanged: (text) {
+              setState(() {
+                email = text;
+              });
+            },
+            decoration: InputDecoration(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+              hintText: 'Correo',
+              labelText: 'Correo',
+              suffixIcon: Icon(Icons.alternate_email),
+              // icon: Icon(Icons.email)
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -211,7 +248,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
   Widget _imagenmaa() {
     return Image(
       image: AssetImage('assets/apk1.png'),
-      height: 230.0,
+      height: calcFromH(context, 0.25),
     );
   }
 }

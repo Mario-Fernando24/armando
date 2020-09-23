@@ -19,7 +19,7 @@ class Crud {
   ApiService apiService = new ApiService();
 
   //creamos la funcion para el login
-  loginData(String email, String password) async{
+  loginData(String email, String password) async {
     String myUrl = "$URL_API/login";
     final response = await http.post(myUrl,
         headers: {'accept': 'application/json'},
@@ -44,7 +44,7 @@ class Crud {
     final value = prefs.get(key) ?? 0;
 
     //string myUrl= $serverUrl/api
-    String myUrl = "$URL_API/api/register";
+    String myUrl = "$URL_API/register";
     final response = await http.post(myUrl, headers: {
       'accept': 'application/json'
     }, body: {
@@ -84,7 +84,7 @@ class Crud {
       String paisDomi,
       String estadoDomi,
       String ciudadDomi,
-      String generoDomi) async{
+      String generoDomi) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;
@@ -179,5 +179,4 @@ class Crud {
     final valuee = prefs.get(keyy) ?? '';
     print('readd: $valuee');
   }
-  
 }

@@ -55,7 +55,6 @@ class _PerfilState extends State<Perfil> {
           backgroundColor:
               (prefs.colorSecundario) ? Colors.black : Colors.green,
         ),
-        drawer: MenuPrincipal(),
         body: itemm());
   }
 
@@ -76,31 +75,40 @@ class _PerfilState extends State<Perfil> {
                   var pedidoData = pedidoRequest.data;
 
                   _nombreController = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['nombreDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['nombreDomi'] != null && pedidoData['perfilDomi']['nombreDomi'] != 'null' ? pedidoData['perfilDomi']['nombreDomi'] : ''}");
 
                   _apellidoController = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['apellidoDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['apellidoDomi'] != null && pedidoData['perfilDomi']['apellidoDomi'] != 'null' ? pedidoData['perfilDomi']['apellidoDomi'] : ''}");
 
                   _numerotelefono = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['numeroDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['numeroDomi'] != null && pedidoData['perfilDomi']['numeroDomi'] != 'null' ? pedidoData['perfilDomi']['numeroDomi'] : ''}");
 
                   _num_documento = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['num_documento']}");
+                      text:
+                          "${pedidoData['perfilDomi']['num_documento'] != null && pedidoData['perfilDomi']['num_documento'] != 'null' ? pedidoData['perfilDomi']['num_documento'] : ''}");
 
                   _paisDomi = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['paisDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['paisDomi'] != null && pedidoData['perfilDomi']['paisDomi'] != 'null' ? pedidoData['perfilDomi']['paisDomi'] : ''}");
 
                   _estadoDomi = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['estadoDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['estadoDomi'] != null && pedidoData['perfilDomi']['estadoDomi'] != 'null' ? pedidoData['perfilDomi']['estadoDomi'] : ''}");
 
                   _ciudadDomi = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['ciudadDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['ciudadDomi'] != null && pedidoData['perfilDomi']['ciudadDomi'] != 'null' ? pedidoData['perfilDomi']['ciudadDomi'] : ''}");
 
                   _fotoDomi = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['fotoDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['fotoDomi'] != null && pedidoData['perfilDomi']['fotoDomi'] != 'null' ? pedidoData['perfilDomi']['fotoDomi'] : ''}");
 
                   _generoDomi = new TextEditingController(
-                      text: "${pedidoData['perfilDomi']['generoDomi']}");
+                      text:
+                          "${pedidoData['perfilDomi']['generoDomi'] != null && pedidoData['perfilDomi']['generoDomi'] != 'null' ? pedidoData['perfilDomi']['generoDomi'] : ''}");
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,17 +165,17 @@ class _PerfilState extends State<Perfil> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .center,
-                                                      children: <Widget>[
-                                                        new CircleAvatar(
-                                                          backgroundColor:
-                                                              Colors.red,
-                                                          radius: 25.0,
-                                                          child: new Icon(
-                                                            Icons.camera_alt,
-                                                            color: Colors.white,
-                                                          ),
-                                                        )
-                                                      ],
+                                                      // children: <Widget>[
+                                                      //   new CircleAvatar(
+                                                      //    backgroundColor:
+                                                      //       Colors.red,
+                                                      //    radius: 25.0,
+                                                      //     child: new Icon(
+                                                      //      Icons.camera_alt,
+                                                      //     color: Colors.white,
+                                                      //    ),
+                                                      //   )
+                                                      // ],
                                                     )),
                                               ]),
                                         )

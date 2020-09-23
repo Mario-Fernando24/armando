@@ -18,12 +18,16 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   //listar toda la informacion de los productos en unas tarjetas
   List data;
 
+  //instancio las preferencias del usuario
+  final prefs = new PreferenciasUsuarios();
   final String URL_API = '$BASE_ENDPOINT/api';
 
   Future<List> getDomiciliarioEntregados() async {
     //instancio todos los productos
-    final response = await http.get("$URL_API /mostrarDomiciliosEntregado");
+    final response = await http
+        .get("$URL_API/mostrarDomiciliosEntregado/" + prefs.idUsuarioo);
     //lo retornamos en un json
+    print(response.body);
     return json.decode(response.body);
   }
 
@@ -38,9 +42,8 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Domicilio Entregados"),
+        title: new AutoSizeText("Historial de pedido"),
       ),
-      drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(
         future: getDomiciliarioEntregados(),
         builder: (context, snapshot) {
@@ -59,8 +62,6 @@ class _DomicilioEntregadoState extends State<DomicilioEntregado> {
 }
 
 class ItemList extends StatelessWidget {
-  //instancio las preferencias del usuario
-  final prefs = new PreferenciasUsuarios();
   //importamos nuestro controlador
   // Crud crud = new Crud();
   final List list;
@@ -87,33 +88,42 @@ class ItemList extends StatelessWidget {
                 //las tarjetas lo principal es el child ya que puedo colocar cualquier cosa
                 child: Column(
                   children: <Widget>[
-                    if (prefs.idUsuarioo.toString() ==
-                        list[i]['id_domiciliario'].toString())
-                      ListTile(
-                        leading: Icon(Icons.shopping_cart, color: Colors.green),
-                        title: new AutoSizeText(
-                          "Negocio: " + list[i]['nombre_tienda'].toString(),
-                          style: TextStyle(fontSize: 20.0, color: Colors.red),
-                        ),
-                        subtitle: AutoSizeText(
-                          list[i]['nombre_cliente'].toString() +
-                              "\n" +
-                              list[i]['correo_cliente'].toString() +
-                              "\n" +
-                              list[i]['numero_cliente'].toString() +
-                              "\n" +
-                              list[i]['direccion'].toString() +
-                              "\n" +
-                              list[i]['total'].toString() +
-                              "\n" +
-                              list[i]['observacion_domicilio'].toString() +
-                              "\n" +
-                              list[i]['estado'].toString() +
-                              "\n" +
-                              list[i]['created_at'].toString(),
-                          style: TextStyle(fontSize: 14.0, color: Colors.black),
-                        ),
+                    //   if (prefs.idUsuarioo.toString() ==
+                    //      list[i]['id_domiciliario'].toString())
+                    ListTile(
+                      leading: FadeInImage.assetNetwork(
+                          placeholder: 'assets/logotienda.png',
+                          image:
+                              "http://startogoweb.com/imagenes/logos/${list[i]['logo_empresa']}"),
+                      title: new AutoSizeText(
+                        list[i]['nombre_tienda'].toString(),
+                        style: TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
                       ),
+                      subtitle: AutoSizeText(
+                        list[i]['nombre_cliente'].toString() +
+                            "\n" +
+                            list[i]['correo_cliente'].toString() +
+                            "\n" +
+                            list[i]['numero_cliente'].toString() +
+                            "\n" +
+                            list[i]['direccion'].toString() +
+                            "\n" +
+                            list[i]['total'].toString() +
+                            "\n" +
+                            list[i]['observacion_domicilio'].toString() +
+                            "\n" +
+                            list[i]['estado'].toString() +
+                            "\n" +
+                            list[i]['created_at'].toString(),
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     //   Row(
                     //propiedad para colocar fila fila al final
                     //   mainAxisAlignment: MainAxisAlignment.end,

@@ -101,12 +101,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Center(
                               child: Image(
                                 image: AssetImage('assets/apk1.png'),
-                                height: 500.0,
-                                width: 500.0,
+                                height: calcFromH(context, 0.6),
+                                width: calcFromW(context, 0.8),
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            AutoSizeText('BienvenidoS a Startogo driver',
+                            AutoSizeText('Bienvenidos a Startogo Driver',
                                 style: TextStyle(
                                     color: Colors.green[900],
                                     fontSize: 24.0,
@@ -130,11 +130,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Center(
                               child: Image(
                                 image: AssetImage('assets/drivers.png'),
-                                height: 660.0,
-                                width: 660.0,
+                                height: calcFromH(context, 0.6),
+                                width: calcFromW(context, 0.8),
                               ),
                             ),
-                            SizedBox(height: 30.0),
+                            SizedBox(height: 10.0),
                             // Text(
                             //   'Aplicacion \nDomiciliario!',
                             //   style: kTitleStyle,

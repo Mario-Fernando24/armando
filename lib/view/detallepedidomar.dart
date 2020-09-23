@@ -1,10 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fancy_dialog/FancyAnimation.dart';
+import 'package:fancy_dialog/FancyGif.dart';
+import 'package:fancy_dialog/FancyTheme.dart';
+import 'package:fancy_dialog/fancy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:startogodomiciliario/controllers/crud.dart';
 
 import 'package:startogodomiciliario/view/DomiciliosEntregado.dart';
 import 'package:startogodomiciliario/view/detallePedido.dart';
+import 'package:startogodomiciliario/view/domiciliosActivos.dart';
+import 'package:toast/toast.dart';
 
+import '../main.dart';
 import 'menuLateral/menuprincial.dart';
 
 class DetaPedidoMa extends StatefulWidget {
@@ -54,37 +61,21 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
 
 //metodo para confirmar si entrego el pedido satisfactoriamente
   void confirmarentrega() {
-    AlertDialog alertDialog = AlertDialog(
-      content: new Text(
-          "El cliente recibio el pedido de '${widget.list[widget.index]['nombre_tienda']}'"),
-      actions: <Widget>[
-        new RaisedButton(
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text(
-            "SI",
-            style: new TextStyle(color: Colors.black),
-          ),
-          color: Colors.green,
-          onPressed: () {
-            //Le envio por parametro el id del domicilio y el id del usuario
-            crud.pedidoEntregado(widget.list[widget.index]['id'].toString());
-            Navigator.of(context).push(new MaterialPageRoute(
-              builder: (BuildContext context) => DomicilioEntregado(),
-            ));
-          },
-        ),
-        new RaisedButton(
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20.0)),
-          child: new Text("NO ", style: new TextStyle(color: Colors.black)),
-          color: Colors.red,
-          onPressed: () => Navigator.pop(context),
-        ),
-      ],
-    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => FancyDialog(
+              title: "Desea Entregar el pedido",
+              descreption: "Entrego el pedido ?",
+              animationType: FancyAnimation.LEFT_RIGHT,
+              theme: FancyTheme.FANCY,
+              gifPath: './assets/entregar.gif', //'./assets/walp.png',
+              okFun: () {
+                crud.pedidoEntregado(
+                    widget.list[widget.index]['id'].toString());
 
-    showDialog(context: context, child: alertDialog);
+                Navigator.of(context).pop();
+              },
+            ));
   }
 
   @override
@@ -98,7 +89,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
             fontWeight: FontWeight.bold,
           ),
         )),
-        drawer: MenuPrincipal(),
+        //  drawer: MenuPrincipal(),
         body: new Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20.0),
@@ -155,7 +146,7 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new RaisedButton(
-                        child: new Text("Detalles Pedido"),
+                        child: new Text("Detalles del  Pedido"),
                         color: Colors.green,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(90.0)),
@@ -167,13 +158,14 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
                         },
                       ),
                       VerticalDivider(),
-                      new RaisedButton(
-                        child: new Text("entregar pedido"),
-                        color: Colors.blue,
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
-                        onPressed: () => confirmarentrega(),
-                      )
+                      if (widget.list[widget.index]['estado'] == 'camino')
+                        new RaisedButton(
+                          child: new Text("ENTREGAR"),
+                          color: Colors.blue,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(30.0)),
+                          onPressed: () => confirmarentrega(),
+                        ),
                     ],
                   )
                 ],

@@ -77,31 +77,31 @@ class _MainPageState extends State<MainPage> {
         //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
         backgroundColor: (prefs.colorSecundario) ? Colors.black : Colors.green,
 
-        actions: <Widget>[
-          Container(
-            padding: EdgeInsets.all(4.0),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://startogoweb.com/vista/assets/images/icons/domiciliopfffff.png'),
-              radius: 25.0,
-            ),
-          ),
-          FlatButton(
-            onPressed: () {
-              sharedPreferences.clear();
-              sharedPreferences.commit();
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => LoginPage()),
-                  (Route<dynamic> route) => false);
-            },
-            child: AutoSizeText("Salir",
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20)),
-          ),
-        ],
+        // actions: <Widget>[
+        //  Container(
+        //    padding: EdgeInsets.all(4.0),
+        //    child: CircleAvatar(
+        //      backgroundImage: NetworkImage(
+        //         'https://startogoweb.com/vista/assets/images/icons/domiciliopfffff.png'),
+        //    radius: 25.0,
+        //  ),
+        // ),
+        // FlatButton(
+        //   onPressed: () {
+        //     sharedPreferences.clear();
+        //    sharedPreferences.commit();
+        //    Navigator.of(context).pushAndRemoveUntil(
+        //       MaterialPageRoute(
+        //          builder: (BuildContext context) => LoginPage()),
+        //     (Route<dynamic> route) => false);
+        //  },
+        // child: AutoSizeText("Salir",
+        //    style: TextStyle(
+        //       color: Colors.red,
+        //      fontWeight: FontWeight.bold,
+        //     fontSize: 20)),
+        // ),
+        // ],
       ),
       //llamo el mapa que se muestra en el inicio
       body: Center(child: InicioMapa()),

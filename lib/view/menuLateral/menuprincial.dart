@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startogodomiciliario/shared/preferencias.dart';
 import 'package:startogodomiciliario/view/DomiciliosEntregado.dart';
@@ -31,6 +32,7 @@ class MenuPrincipal extends StatelessWidget {
           new ListTile(
               title: new AutoSizeText("Inicio"),
               trailing: new Icon(Icons.home,
+                  size: 30.0,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => MainPage()))),
@@ -38,6 +40,7 @@ class MenuPrincipal extends StatelessWidget {
           new ListTile(
               title: new AutoSizeText("Perfil"),
               trailing: new Icon(Icons.person_add,
+                  size: 30.0,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE PERFILPAGE
@@ -46,6 +49,7 @@ class MenuPrincipal extends StatelessWidget {
           new ListTile(
               title: new AutoSizeText("Pedidos Activos"),
               trailing: new Icon(Icons.shopping_cart,
+                  size: 30.0,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE LISTAR PRODUCTO
@@ -55,35 +59,46 @@ class MenuPrincipal extends StatelessWidget {
           new ListTile(
               title: new AutoSizeText("Historial de Pedidos"),
               trailing: new Icon(Icons.history,
+                  size: 30.0,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE LISTAR PRODUCTO
 
                   builder: (BuildContext context) => DomicilioEntregado()))),
-          new Divider(),
-          new ListTile(
-              title: new AutoSizeText("Mi billetera"),
-              trailing: new Icon(Icons.attach_money,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
-              onTap: () {}),
-          new Divider(),
-          new ListTile(
-              title: new AutoSizeText("Estadisticas"),
-              trailing: new Icon(Icons.assessment,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
-              onTap: () {}),
+          //   new Divider(),
+          //  new ListTile(
+          //     title: new AutoSizeText("Mi billetera"),
+          //    trailing: new Icon(Icons.attach_money,
+          //        size: 30.0,
+          //        color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+          //    onTap: () {}),
+          // new Divider(),
+          //  new ListTile(
+          //     title: new AutoSizeText("Estadisticas"),
+          //    trailing: new Icon(Icons.assessment,
+          //       size: 30.0,
+          //       color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+          //     onTap: () {}),
           new Divider(),
           new ListTile(
               title: new AutoSizeText("Ajustes"),
               trailing: new Icon(Icons.settings,
+                  size: 30.0,
                   color: (prefs.colorSecundario) ? Colors.black : Colors.green),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE PERFILPAGE
                   builder: (BuildContext context) => SettingPage()))),
           new Divider(),
           new ListTile(
-              title: new AutoSizeText("Salir"),
-              trailing: new Icon(Icons.close, color: Colors.red),
+              title: new AutoSizeText(
+                "Salir",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              trailing: new FaIcon(
+                FontAwesomeIcons.signOutAlt,
+                size: 30.0,
+                color: Colors.red,
+              ),
               onTap: () async {
                 //cierro session y elimino el token que esat guardadas en las preferencias de la apk
                 SharedPreferences preferences =

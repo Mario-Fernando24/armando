@@ -20,10 +20,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Inicialmente la contraseña es oscura
+  bool _obscureText = true;
   //declaramos de tipo booleano si esta cargando
   bool _isLoading = false;
-
+  String password = '';
   final String URL_API = '$BASE_ENDPOINT/api';
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
             child: CupertinoButton(
               padding: EdgeInsets.symmetric(vertical: 4),
               child: AutoSizeText(
-                "Olvideste tu contraseña",
+                "Olvidaste tu contraseña",
                 style: TextStyle(
                     fontSize: 13.0,
                     color: Colors.black,
@@ -211,27 +219,33 @@ class _LoginPageState extends State<LoginPage> {
             cursorColor: Colors.white,
             style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                hintText: 'Correo',
-                labelText: 'Correo',
-                suffixIcon: Icon(Icons.alternate_email),
-                icon: Icon(Icons.email)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+              hintText: 'Correo',
+              labelText: 'Correo',
+              suffixIcon: Icon(Icons.alternate_email),
+            ),
           ),
           SizedBox(height: 30.0),
           TextFormField(
             controller: passwordController,
             cursorColor: Colors.black,
-            //para que la contraseña se oculte mientra este escribiendo
-            obscureText: true,
             style: TextStyle(color: Colors.black),
+            obscureText: _obscureText,
+            onChanged: (text) {
+              setState(() {
+                password = text;
+              });
+            },
             decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                hintText: 'Contraseña',
-                labelText: 'Contraseña',
-                suffixIcon: Icon(Icons.lock_open),
-                icon: Icon(Icons.lock)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+              hintText: 'Contraseña',
+              labelText: 'Contraseña',
+              suffixIcon: IconButton(
+                  onPressed: _toggle,
+                  icon: Icon(!_obscureText ? Icons.lock_open : Icons.lock)),
+            ),
           ),
         ],
       ),

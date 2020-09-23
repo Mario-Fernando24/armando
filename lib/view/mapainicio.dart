@@ -25,7 +25,7 @@ class _InicioMapaState extends State<InicioMapa> {
   GoogleMapController _googleMapController;
 
   static final CameraPosition initialLocation = CameraPosition(
-    target: LatLng(8.764241, -75.874627),
+    target: LatLng(42.185623, -71.085291),
     zoom: 14.4746,
   );
 

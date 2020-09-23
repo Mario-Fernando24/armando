@@ -41,7 +41,6 @@ class _SettingPageState extends State<SettingPage> {
           backgroundColor:
               (prefs.colorSecundario) ? Colors.black : Colors.green,
         ),
-        drawer: MenuPrincipal(),
         body: ListView(
           children: <Widget>[
             Container(

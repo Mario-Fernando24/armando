@@ -19,11 +19,16 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   //listar toda la informacion de los productos en unas tarjetas
   List data;
 
+  //inicializar el shared_preferences
+  final prefs = new PreferenciasUsuarios();
+
   final String URL_API = '$BASE_ENDPOINT/api';
 
   Future<List> getDomiciliarioActivos() async {
     //instancio todos los productos
-    final response = await http.get("$URL_API/mostrarDomiActivo");
+    final response =
+        await http.get("$URL_API/mostrarDomiActivo/" + prefs.idUsuarioo);
+    print(response.body);
     //lo retornamos en un json
     return json.decode(response.body);
   }
@@ -39,9 +44,8 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Domicilios Activo"),
+        title: new AutoSizeText("Pedidos Activas"),
       ),
-      drawer: MenuPrincipal(),
       body: new FutureBuilder<List>(
         future: getDomiciliarioActivos(),
         builder: (context, snapshot) {
@@ -60,8 +64,6 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
 }
 
 class ItemList extends StatelessWidget {
-  //instancio las preferencias del usuario
-  final prefs = new PreferenciasUsuarios();
   //importamos nuestro controlador
   // Crud crud = new Crud();
   final List list;
@@ -88,44 +90,36 @@ class ItemList extends StatelessWidget {
                 //las tarjetas lo principal es el child ya que puedo colocar cualquier cosa
                 child: Column(
                   children: <Widget>[
-                    if (prefs.idUsuarioo.toString() ==
-                        list[i]['id_domiciliario'].toString())
-                      ListTile(
-                        leading: Icon(
-                          Icons.shopping_cart,
-                          color: Colors.red,
-                          size: 50,
-                        ),
-                        title: new AutoSizeText(
-                          "Negocio: " + list[i]['nombre_tienda'].toString(),
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.red[600],
-                              fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: AutoSizeText(
-                          list[i]['nombre_cliente'].toString() +
-                              "\n" +
-                              list[i]['correo_cliente'].toString() +
-                              "\n" +
-                              list[i]['numero_cliente'].toString() +
-                              "\n" +
-                              list[i]['direccion'].toString() +
-                              "\n" +
-                              "\$ " +
-                              list[i]['totalcobrar'].toString() +
-                              "\n" +
-                              list[i]['observacion_domicilio'].toString() +
-                              "\n" +
-                              list[i]['estado'].toString() +
-                              "\n" +
-                              list[i]['created_at'].toString(),
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
+                    ListTile(
+                      leading: FadeInImage.assetNetwork(
+                        placeholder: 'assets/logotienda.png',
+                        image:
+                            "http://startogoweb.com/imagenes/logos/${list[i]['logo_empresa']}",
+                        height: 90.0,
                       ),
+                      title: new AutoSizeText(
+                        list[i]['nombre_tienda'].toString(),
+                        style: TextStyle(
+                            fontSize: 24.0,
+                            color: Colors.red[600],
+                            fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: AutoSizeText(
+                        list[i]['nombre_cliente'].toString() +
+                            "\n" +
+                            list[i]['direccion'].toString() +
+                            "\n" +
+                            list[i]['observacion_domicilio'].toString() +
+                            "\n" +
+                            list[i]['estado'].toString() +
+                            "\n" +
+                            list[i]['created_at'].toString(),
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     //   Row(
                     //propiedad para colocar fila fila al final
                     //   mainAxisAlignment: MainAxisAlignment.end,

@@ -49,21 +49,25 @@ class _DetallePedidoState extends State<DetallePedido> {
                   var pedidoData = pedidoRequest.data;
                   return Column(
                     children: <Widget>[
-                      _logom(),
+                      Image(
+                        image: NetworkImage(
+                            "http://startogoweb.com/imagenes/logos/${pedidoData['cabezapedido']['logo_empresa']}"),
+                        height: 130.0,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           AutoSizeText(
+                            "${pedidoData['cabezapedido']['nombre_tienda']}",
+                            style: TextStyle(
+                                fontSize: 25.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          AutoSizeText(
                             "#${pedidoData['cabezapedido']['id']}",
                             style:
                                 TextStyle(fontSize: 16.0, color: Colors.black),
-                          ),
-                          AutoSizeText(
-                            "${pedidoData['cabezapedido']['nombre_tienda']}",
-                            style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
                           ),
                           AutoSizeText(
                             "Cliente ${pedidoData['cabezapedido']['nombrecli']}",
@@ -150,14 +154,14 @@ class _DetallePedidoState extends State<DetallePedido> {
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             )),
-                            DataColumn(
-                                label: Text(
-                              "observacion",
-                              style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            )),
+                            //   DataColumn(
+                            //       label: Text(
+                            //    "observacion",
+                            //     style: TextStyle(
+                            //         fontSize: 10.0,
+                            //        color: Colors.black,
+                            //        fontWeight: FontWeight.bold),
+                            //   )),
                           ],
                           rows: pedidoData['detallepedido']
                               .map<DataRow>((detalle) {
@@ -168,35 +172,35 @@ class _DetallePedidoState extends State<DetallePedido> {
                               DataCell(Text("${detalle['cantidad']}")),
                               DataCell(Text("${detalle['precio_venta']}")),
                               DataCell(Text("${detalle['subtotal']}")),
-                              DataCell(Text("${detalle['observacion']}")),
+                              //   DataCell(Text("${detalle['observacion']}")),
                             ]);
                           }).toList()),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           new Padding(
                             padding: const EdgeInsets.only(top: 30.0),
                           ),
+                          new AutoSizeText(
+                            " Propina \$ ${pedidoData['cabezapedido']['ValorPropina']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                          Divider(),
+                          new AutoSizeText(
+                            " Impuesto \$ ${pedidoData['cabezapedido']['impuesto']}",
+                            style: new TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.bold),
+                          ),
+                          Divider(),
                           AutoSizeText(
-                            "\$ Subtotal: ${pedidoData['cabezapedido']['subtotalpedido']}",
+                            " Subtotal: \$ ${pedidoData['cabezapedido']['subtotalpedido']}",
                             style: new TextStyle(
                                 fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
                           Divider(),
                           new AutoSizeText(
-                            "\$ Impuesto: ${pedidoData['cabezapedido']['impuesto']}",
-                            style: new TextStyle(
-                                fontSize: 15.0, fontWeight: FontWeight.bold),
-                          ),
-                          Divider(),
-                          new AutoSizeText(
-                            "\$ Propina: ${pedidoData['cabezapedido']['ValorPropina']}",
-                            style: new TextStyle(
-                                fontSize: 15.0, fontWeight: FontWeight.bold),
-                          ),
-                          Divider(),
-                          new AutoSizeText(
-                            "\$ Total: ${pedidoData['cabezapedido']['totalcobrar']}",
+                            " Total: \$ ${pedidoData['cabezapedido']['totalcobrar']}",
                             style: new TextStyle(
                                 fontSize: 15.0, fontWeight: FontWeight.bold),
                           ),
@@ -217,10 +221,10 @@ class _DetallePedidoState extends State<DetallePedido> {
     );
   }
 
-  Widget _logom() {
-    return Image(
-      image: AssetImage('assets/apk1.png'),
-      height: 100.0,
-    );
-  }
+  Widget _logom() {}
 }
+
+//  leading: FadeInImage.assetNetwork(
+//       placeholder: 'assets/logotienda.png',
+//      image:
+//         "http://startogoweb.com/imagenes/logos/${list[i]['logo_empresa']}"),
