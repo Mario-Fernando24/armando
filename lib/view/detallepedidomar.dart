@@ -12,6 +12,7 @@ import 'package:startogodomiciliario/view/domiciliosActivos.dart';
 import 'package:toast/toast.dart';
 
 import '../main.dart';
+import 'DomiciliosEntregado.dart';
 import 'menuLateral/menuprincial.dart';
 
 class DetaPedidoMa extends StatefulWidget {
@@ -66,14 +67,22 @@ class _DetaPedidoMaState extends State<DetaPedidoMa> {
         builder: (BuildContext context) => FancyDialog(
               title: "Desea Entregar el pedido",
               descreption: "Entrego el pedido ?",
+              okColor: Colors.green,
+              ok: "Enviar",
+              cancel: "Cancelar",
+
               animationType: FancyAnimation.LEFT_RIGHT,
               theme: FancyTheme.FANCY,
               gifPath: './assets/entregar.gif', //'./assets/walp.png',
-              okFun: () {
-                crud.pedidoEntregado(
+              okFun: () async {
+                var response = await crud.pedidoEntregado(
                     widget.list[widget.index]['id'].toString());
-
-                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  new MaterialPageRoute(
+                      builder: (BuildContext context) => DomicilioEntregado()),
+                );
+                Toast.show('Pedido entregado con exito', context,
+                    duration: Toast.LENGTH_LONG);
               },
             ));
   }
