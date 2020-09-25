@@ -377,6 +377,7 @@
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 1.0;
 				FLUTTER_BUILD_NUMBER = 1;
+				FLUTTER_ROOT = /Users/hgmax/development/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -512,11 +513,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8W5UTPXL8J;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 1.0;
 				FLUTTER_BUILD_NUMBER = 1;
+				FLUTTER_ROOT = /Users/hgmax/development/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -546,11 +548,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 8W5UTPXL8J;
 				ENABLE_BITCODE = NO;
 				FLUTTER_BUILD_NAME = 1.0;
 				FLUTTER_BUILD_NUMBER = 1;
+				FLUTTER_ROOT = /Users/hgmax/development/flutter;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
