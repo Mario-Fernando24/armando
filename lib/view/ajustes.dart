@@ -107,6 +107,7 @@ class _SettingPageState extends State<SettingPage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.red),
               ),
+              onChanged: (bool value) {},
             ),
           ],
         ));
