@@ -88,7 +88,7 @@ class _InicioMapaState extends State<InicioMapa> {
           circleId: CircleId("carro"),
           radius: newLocalData.accuracy,
           zIndex: 1,
-          strokeColor: Colors.blue,
+          strokeColor: Colors.indigo[900],
           center: latlng,
           fillColor: Colors.blue.withAlpha(70));
     });

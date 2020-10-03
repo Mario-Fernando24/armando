@@ -33,7 +33,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
     return MaterialApp(
       //color al scafoll
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       //final del color scafoll
@@ -49,7 +49,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
         body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Colors.white, Colors.green[900]],
+                  colors: [Colors.white, Colors.blue[900]],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
             ),
@@ -164,7 +164,7 @@ class _OlvidarContrasenaState extends State<OlvidarContrasena> {
                     enviar(email);
                   },
             elevation: 6.0,
-            color: Colors.green,
+            color: Colors.indigo[900],
             child: Text("Restablecer contraseña",
                 style: TextStyle(
                     color: Colors.white,

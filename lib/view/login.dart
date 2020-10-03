@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.white, Colors.green[500], Colors.black],
+              colors: [Colors.white, Colors.indigo[900], Colors.black],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Center(
                                 child: Text(
-                              "Iniciar Sesión Driver",
+                              "Iniciar Sesión",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: calcFromW(context, 0.065)),
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                         signIn(emailController.text, passwordController.text);
                       },
             elevation: 6.0,
-            color: Colors.red,
+            color: Colors.indigo[900],
             child: AutoSizeText("Ingresar",
                 style: TextStyle(
                     color: Colors.white,

@@ -39,7 +39,7 @@ class _SettingPageState extends State<SettingPage> {
 
           //para activar el color
           backgroundColor:
-              (prefs.colorSecundario) ? Colors.black : Colors.green,
+              (prefs.colorSecundario) ? Colors.black : Colors.indigo[900],
         ),
         body: ListView(
           children: <Widget>[

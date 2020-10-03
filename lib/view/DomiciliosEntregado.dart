@@ -92,7 +92,7 @@ class ItemList extends StatelessWidget {
                     //      list[i]['id_domiciliario'].toString())
                     ListTile(
                       leading: FadeInImage.assetNetwork(
-                          placeholder: 'assets/logotienda.png',
+                          placeholder: 'assets/apk1.png',
                           image:
                               "http://startogoweb.com/imagenes/logos/${list[i]['logo_empresa']}"),
                       title: new AutoSizeText(

@@ -33,7 +33,9 @@ class MenuPrincipal extends StatelessWidget {
               title: new AutoSizeText("Inicio"),
               trailing: new Icon(Icons.home,
                   size: 30.0,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+                  color: (prefs.colorSecundario)
+                      ? Colors.black
+                      : Colors.indigo[900]),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   builder: (BuildContext context) => MainPage()))),
           new Divider(),
@@ -41,7 +43,9 @@ class MenuPrincipal extends StatelessWidget {
               title: new AutoSizeText("Perfil"),
               trailing: new Icon(Icons.person_add,
                   size: 30.0,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+                  color: (prefs.colorSecundario)
+                      ? Colors.black
+                      : Colors.indigo[900]),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE PERFILPAGE
                   builder: (BuildContext context) => Perfil()))),
@@ -50,7 +54,9 @@ class MenuPrincipal extends StatelessWidget {
               title: new AutoSizeText("Pedidos Activos"),
               trailing: new Icon(Icons.shopping_cart,
                   size: 30.0,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+                  color: (prefs.colorSecundario)
+                      ? Colors.black
+                      : Colors.indigo[900]),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE LISTAR PRODUCTO
 
@@ -60,7 +66,9 @@ class MenuPrincipal extends StatelessWidget {
               title: new AutoSizeText("Historial de Pedidos"),
               trailing: new Icon(Icons.history,
                   size: 30.0,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+                  color: (prefs.colorSecundario)
+                      ? Colors.black
+                      : Colors.indigo[900]),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE LISTAR PRODUCTO
 
@@ -70,21 +78,23 @@ class MenuPrincipal extends StatelessWidget {
           //     title: new AutoSizeText("Mi billetera"),
           //    trailing: new Icon(Icons.attach_money,
           //        size: 30.0,
-          //        color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+          //        color: (prefs.colorSecundario) ? Colors.black : Colors.indigo[900]),
           //    onTap: () {}),
           // new Divider(),
           //  new ListTile(
           //     title: new AutoSizeText("Estadisticas"),
           //    trailing: new Icon(Icons.assessment,
           //       size: 30.0,
-          //       color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+          //       color: (prefs.colorSecundario) ? Colors.black : Colors.indigo[900]),
           //     onTap: () {}),
           new Divider(),
           new ListTile(
               title: new AutoSizeText("Ajustes"),
               trailing: new Icon(Icons.settings,
                   size: 30.0,
-                  color: (prefs.colorSecundario) ? Colors.black : Colors.green),
+                  color: (prefs.colorSecundario)
+                      ? Colors.black
+                      : Colors.indigo[900]),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   //LLAMO A LA CLASE PERFILPAGE
                   builder: (BuildContext context) => SettingPage()))),
@@ -116,17 +126,9 @@ class MenuPrincipal extends StatelessWidget {
   }
 
   Widget _imagenm() {
-    return FadeInImage(
-      image: NetworkImage(
-          'https://startogoweb.com/vista/assets/images/icons/domiciliopfffff.png'),
-      //mientras este cargando el imagen http me muestre el gif de cargando
-      placeholder: AssetImage('assets/loading.gif'),
-      //para que agarre todo el ancho
-      fit: BoxFit.contain,
-
-      //con una duracion de 20milisegundo
-      fadeInDuration: Duration(milliseconds: 500),
-      height: 190.0,
+    return Image(
+      image: AssetImage('assets/apk1.png'),
+      height: 180.0,
     );
   }
 }

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MainPage(),
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );
@@ -75,7 +75,8 @@ class _MainPageState extends State<MainPage> {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
 
         //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
-        backgroundColor: (prefs.colorSecundario) ? Colors.black : Colors.green,
+        backgroundColor:
+            (prefs.colorSecundario) ? Colors.black : Colors.blue[900],
 
         // actions: <Widget>[
         //  Container(

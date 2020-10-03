@@ -48,7 +48,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.white, Colors.green[500], Colors.black],
+              colors: [Colors.white, Colors.indigo[900], Colors.black],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -158,7 +158,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                     register();
                   },
             elevation: 6.0,
-            color: Colors.green,
+            color: Colors.indigo[900],
             child: Text("Registrarse",
                 style: TextStyle(
                     color: Colors.white,
@@ -179,6 +179,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                       "Iniciar Sesión",
                       style: TextStyle(
                           fontSize: 13.0,
+                          color: Colors.indigo[900],
                           // fontWeight: FontWeight.bold,
                           fontFamily: 'sans'),
                     ),
@@ -195,6 +196,7 @@ class _RegistrarDomiciliarioState extends State<RegistrarDomiciliario> {
                       "Olvidè mi contraseña",
                       style: TextStyle(
                           fontSize: 13.0,
+                          color: Colors.indigo[900],
                           // fontWeight: FontWeight.bold,
                           fontFamily: 'sans'),
                     ),

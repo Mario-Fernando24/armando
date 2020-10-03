@@ -29,7 +29,7 @@ class _DetallePedidoState extends State<DetallePedido> {
 
           //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
           backgroundColor:
-              (prefs.colorSecundario) ? Colors.black : Colors.green,
+              (prefs.colorSecundario) ? Colors.black : Colors.indigo[900],
         ),
         body: itemm());
   }

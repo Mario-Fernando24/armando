@@ -53,7 +53,7 @@ class _PerfilState extends State<Perfil> {
 
           //para activar el color condicion si el colorSegundario es true que muestre negro si no verde
           backgroundColor:
-              (prefs.colorSecundario) ? Colors.black : Colors.green,
+              (prefs.colorSecundario) ? Colors.black : Colors.indigo[900],
         ),
         body: itemm());
   }
@@ -424,7 +424,7 @@ class _PerfilState extends State<Perfil> {
                   child: new RaisedButton(
                 child: new Text("Actualizar"),
                 textColor: Colors.white,
-                color: Colors.green,
+                color: Colors.indigo[900],
                 onPressed: () {
                   crud.actualizarDatosDomi(
                       prefs.idUsuarioo,

@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       height: 8.0,
       width: isActive ? 35.0 : 35.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.green[900] : Color(0xFF7B4344),
+        color: isActive ? Colors.indigo[900] : Color(0xFF7B4344),
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -73,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           child: AutoSizeText(
                             'Saltar',
                             style: TextStyle(
-                              color: Colors.orange[300],
+                              color: Colors.indigo[900],
                               fontSize: 24.0,
                             ),
                           ),
@@ -108,7 +108,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             SizedBox(height: 10.0),
                             AutoSizeText('Bienvenidos a Startogo Driver',
                                 style: TextStyle(
-                                    color: Colors.green[900],
+                                    color: Colors.indigo[900],
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.bold)),
                             SizedBox(height: 10.0),
@@ -172,7 +172,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 AutoSizeText(
                                   'Siguiente',
                                   style: TextStyle(
-                                    color: Colors.green[900],
+                                    color: Colors.indigo[900],
                                     fontSize: calcFromW(context, 0.045),
                                     fontWeight: FontWeight.bold,
                                   ),

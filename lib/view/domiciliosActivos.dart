@@ -44,7 +44,7 @@ class _DomiciliosActivosState extends State<DomiciliosActivos> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new AutoSizeText("Pedidos Activas"),
+        title: new AutoSizeText("Pedidos Activos"),
       ),
       body: new FutureBuilder<List>(
         future: getDomiciliarioActivos(),
@@ -92,7 +92,7 @@ class ItemList extends StatelessWidget {
                   children: <Widget>[
                     ListTile(
                       leading: FadeInImage.assetNetwork(
-                        placeholder: 'assets/logotienda.png',
+                        placeholder: 'assets/apk1.png',
                         image:
                             "http://startogoweb.com/imagenes/logos/${list[i]['logo_empresa']}",
                         height: 90.0,

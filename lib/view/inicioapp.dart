@@ -15,7 +15,7 @@ class _MarioPruState extends State<MarioPru> {
       //llamo la funcion donde esta style e imagen del inicio de la aplicacion cuando instalo la apk
       home: OnboardingScreen(),
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );
